@@ -1,0 +1,1153 @@
+
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[conference]{../../IEEEtran}
+% Add the compsoc option for Computer Society conferences.
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[conference]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+%\usepackage[caption=false]{caption}
+\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{comment}
+%\usepackage{algpseudocode}
+
+% correct bad hyphenation here
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+\newcommand{\TWOSTATE}[2]{%
+    \STATE\ {#1}\ {#2}%
+}
+\newcommand{\THREESTATE}[3]{%
+    \STATE\ {#1}\ {#2}\ {#3}%
+}
+\newcommand{\Or}{\textbf{or}\xspace}
+
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Organization-level Control\\ of Excessive Internet Downloads}
+
+%\title{Bare Demo of IEEEtran.cls for Conferences}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Saad Y. Sait}
+\IEEEauthorblockA{Computer Science \& Engineering\\
+Indian Institute of Technology, Madras\\
+Chennai 600036\\
+Email: aboomaryam.saad@gmail.com}
+\and
+\IEEEauthorblockN{Hema A. Murthy}
+\IEEEauthorblockA{Computer Science \& Engineering\\
+Indian Institute of Technology, Madras\\
+Chennai 600036\\
+Email: hema@iitm.ac.in}
+\and
+\IEEEauthorblockN{Krishna M. Sivalingam}
+\IEEEauthorblockA{Computer Science \& Engineering\\
+Indian Institute of Technology, Madras\\
+Chennai 600036\\
+Email: skrishnam@iitm.ac.in}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+%\boldmath
+
+
+Peak-hour congestion is a common problem faced by Internet subscribers across the world. Heavy traffic leads to poor Internet experience for all users. The objective of this work is to provide a solution to peak-hour congestion due to download traffic in flat-rate organizational LANs. Two mechanisms have been used in order to accomplish this. The first mechanism, is TCP rate control (TCR); it is a receiver-based flow control technique that can be used to effectively rate limit rogue users' flows, making more bandwidth available to regular users. The second mechanism, admission control reduces the bandwidth wastage due to users disconnecting out of impatience when per-user goodputs are low. Using simulation-based experiments, it has been demonstrated that the composite technique, \emph{exclusive TCP rate and admission control} (xTRAC) provides seamless control of regular users, while improving response times and goodput by upto 58\% during overload. In the simulations, xTRAC is implemented at a web proxy. A further advantage is that implementation changes need be made only to the web proxy, leading to an easy deployment.
+
+% Firstly, abusive users are controlled, thereby making more bandwidth available to regular users. Secondly, the total number of simultaneously active connections may be limited, leading to good user experience under heavy traffic. The ineffective utilization of the link capacity arising out of users disconnecting out of impatience is also addressed. A rate control mechanism called HTCR has been proposed which is a variant of TCP Rate Control (TCR); it works by manipulating the advertised window and pacing out the ACKs. HTCR when augmented with admission control controls abusive flows while improving the aggregate performance of the system.
+% In this work, the control of abusive downloads using receiver-based flow control is addressed.
+%ingresses an ISP network or egresses from an organizational LAN, creating a bottleneck  from the point of ISPs control peak hour traffic by rate-limiting the flows. Frequently, the downloads need to be controlled. Last mile link connecting subscriber to ISP is bottleneck. Flows on bottleneck link need to be controlled. We address specifically the case of an organization. But the technique is generally applicable where end-users flows ingress into an ISP network creating a bottleneck.    Our assumptions regarding the organization, about proxy server. The notion of user impatience. Techniques TCR, our version for HTTP traffic at proxy, and using admission control. Results.
+
+%Heavy traffic leads to poor Internet experience for all users. The objective of this work is to provide a solution to the peak-hour congestion problem for flat-rate organizational LANs. It exploits two aspects of the system. Firstly, abusive users may be controlled, thereby making more bandwidth available to regular users. Secondly, the total number of simultaneously active connections may be limited, leading to good user experience under heavy traffic. The mechanism provides the benefit of controlling abusive users, while at the same time enhancing the goodput of the system, thereby effectively utilizing link capacity. Simulation results indicate faster service for regular users by a factor of 20 when compared to abusive users, and an improvement in useful downloads by upto 20\% under heavy traffic. The simulations assume a mechanism for user-authentication as in a web proxy.
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the conference you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals/conferences frown on
+% math in the abstract anyway.
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+% no \IEEEPARstart
+Peak-hour congestion is a universal problem faced by all types of Internet subscribers, be it residential, small or home office (SOHO), campuses or large enterprises. ISPs are concerned about this issue since efficient utilization is necessary for good revenue; good revenues lower the cost.  It is also a concern for subscribers who are unable to have a good Internet experience during peak hours. It is particularly problematic for organizations where a large number of users share the same link unrestrictedly without controls in place. This work addresses this problem. A control mechanism is provided that seamlessly restricts the bandwidth of rogue users, while at the same time improves the goodput at the bottleneck link.
+
+%For developing countries(in this case, Nigeria)\cite{references:haq13}, effective bandwidth utilization is a major concern as it is an expensive resource and should be shared fairly among the users.
+
+%It is a concern for ISPs who are interested in efficient utilization of the links and thereby lowering costs and increasing revenue; it is also a concern for subscribers who are unable to have a good Internet experience during peak hours. It is particularly problematic for organizations in which a large number of users share the same link for Internet access. Users who want to use the Internet for genuine reasons are unable to have a good Internet experience due to network congestion. This work provides a mechanism to control abusive users at the organizational level for a flat-rate LAN.
+
+%ISPs have used pricing schemes in order to control indiscriminate Internet usage. In a \emph{usage-based} pricing (UBP) scheme, the charge for a subscriber is metered on his/her usage after a cap has been reached. Eventhough UBP motivates a subscriber to efficiently use a link, it does not emphasize reduced usage during peak hours; so, it does not control peak-hour congestion. \emph{Time-of-day} (TDP) pricing alleviates this problem by fixing different charges for usage in lean and peak hours. These two schemes are \emph{static} schemes  wherein the specified prices do not change with the congestion level. In a \emph{dynamic} pricing scheme, the price changes with the level of congestion and charges vary at finer timescales than in the former. Smart Market approach~\cite{references:mackiemason93} is an example of such a scheme.
+
+%Organizations typically provide flat-rate pricing to their users, which leads to congestion during peak hours. 
+
+Organizations typically provide their users free Internet access; such unrestricted access leads to misuse of resources. The problem is further exacerbated in developing nations where effective bandwidth is an expensive resource and should be shared fairly among the users~\cite{references:haq13}. ISPs provide their subscribers Internet access, but control it using pricing policies. In the absence of pricing policies, suitable control mechanisms need to be applied in organizations to penalize rogue users, and incentivize responsible usage, which can lead to efficient use of Internet access links. Approaches to control Internet usage within an organization may be \emph{voluntary} like in ~\cite{references:balakrishnan99}, \emph{quota-based} like in   ~\cite{references:lin}~\cite{references:paine}~\cite{references:chu} or \emph{virtual pricing} schemes like in ~\cite{references:lee11}.
+
+%~\cite{references:kumar} monitors bottleneck link, and when traffic is above a threshold, TCP admission control is applied to block new connections; the objective is only \emph{peak shaving}, and fairness is not maintained among users. Others  have worked on the fairness aspect of Internet access;
+%A flat-rate arrangement like this warrants some mechanism by which users may be controlled during peak hours  Control at the organizational-level has been done by rate controlling the flows.
+%This leads to misuse of privileges by a fraction of the users called \emph{abusive} users. In order to provide
+%does so based on user application requirements using a system of \emph{virtual credits}, , provides a solution for the case where residential or small office home office (SOHO) networks are connected to an ISP by means of a gateway. Each subscriber gateway (typically a modem) purchases guaranteed bandwidth from the ISP using \emph{virtual credits}, and then redistributes this among the applications according to their relative priority; users can set their preferences for different applications. For example - if two users want to use the Internet in the evening, one of them wants to watch a movie using Netflix, the other wishes to download a large file; then priority would be given to the former to watch the movie in the evening, and the latter would be incentivized to do the download at night time. ~\cite{references:lee11} devises \emph{token pricing}. Each user is provided a limited number of tokens. Two services are offered - one which requires tokens and one which does not. During peak hour, the service with tokens is less likely to get congested, and users desiring a high level of service may utilize this service by using up their tokens. 
+%\cite{references:palazzi10} does QoS provisioning at the gateway(or access point) of an organization (typically SOHO) in order to effectively manage the bandwidth among the real-time (UDP) traffic and elastic download traffic (TCP). The access point uses the Open WRT operating system and control elastic TCP flows by way of modification of advertised window. In this way, a stable transmission rate may be provided for TCP traffic, with reduced queuing delays, easening the co-existence with real-time UDP traffic.
+The current work focuses on controlling excessive download traffic in an organizational network. This cannot be done with traditional schemes like per-flow queueing (PFQ), class-based queueing (CBQ) or random early drop (RED)~\cite{references:wei} since this would have to be performed at the ISP gateway connecting to the organization. This is not feasible because intra-organizational control is outside the purview of the ISP.  Control of sender's rate is usually performed using \emph{receiver-based flow control}. For well behaved sources, receiver-based flow control may be accomplished by modifying the advertised window field in ACKs. \emph{TCP Rate Control} (TCR)~\cite{references:karandikar} is one such technique to rate control TCP flows by manipulating the advertised window. Similar techniques of controlling TCP flows by adjusting the advertised window have been used in different domains ~\cite{references:kashibuchi}\cite{references:koga}\cite{references:palazzi10}\cite{references:packetshaper16}. 
+%~\cite{references:banchs02} studied the case of a large number of a single user's flows on ingress into an ISP network using the Assured Forwarding (AF) per-hop behavior (PHB). Each customer has a contracted Customer Information Rate (CIR) at which he/she can transmit packets. During \emph{underload}, all packets are marked as \emph{in} packets, but during overload, a significant fraction of the packets are marked as \emph{out} packets. The latter are dropped from core routers implementing WRED with a higher probability. During overload, a user gets much less than the CIR of goodput as many of the flows are terminated by the user out of impatience. They argue based on simulation results that admission control is essential in such a scenario. In this work as well, admission control is used to overcome the deterioration in goodput arising out of user impatience. 
+% While other approaches ~\cite{references:lin}~\cite{references:paine}~\cite{references:chu} have dealt with the specific case of campus congestion control, they provide solutions for upload traffic; in this work, techniques for control of download traffic are proposed. It is assumed that all Internet traffic passes through a user-authenticating forward web proxy, where control is performed, thereby attaining strictly user-level control. In ~\cite{references:sait15} we devised a machine learning based classifier to classify the users' usage into normal and abusive categories. In this work, it is assumed that users have been categorized into \emph{abusive} or \emph{high} and \emph{normal} or \emph{low} usage categories. 
+
+%The case of a large number of flows transmitting packets over a bottleneck link has been dealt with in~\cite{references:morris97}. They state based on numerical and experimental analysis that with sufficiently large number of flows, the packet drop rate will approach a value above 50\% despite aggressive backoff (during packet drops); They recommend using rate control for the case of a large number of flows sharing a bottlenecked link when the window size is small.
+
+%In this work, as the web proxy plays the role of the receiver for downloads, the problem is essentially one of \emph{receiver-based} flow control.  \cite{references:li13} describes a technique of receiver-based flow control for misbehaved sources which may inject excessive traffic into the network while not reacting to congestion control measures. When sources are well-behaved, receiver-based flow control may be done by adjusting the \emph{advertised window}. The advertised window field of TCP ACKs is used to implement flow control i.e. to enable the receiver to throttle the sender and prevent it from overwhelming the receiver with data packets.
+
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+In this work, a TCR based algorithm called \emph{simple TCR} (STCR) has been devised for the specific case of rate limiting HTTP traffic at the web proxy, a key feature of this algorithm being the simplicity of implementation. Then two schemes - \emph{relative TCP rate control} (RTCR) and \emph{exclusive TCP rate and admission control} (xTRAC) have been devised for control of excessive usage during peak hours in organizational LANs. While RTCR works by controlling the relative throughput of rogue viz-a-vis normal users' flows, xTRAC allocates mutually exclusive aggregate bandwidth to both classes and augments the algorithm with admission control. Using simulation-based experiments, the performance of both techniques have been compared with vanilla TCP Reno, both in terms of control of rogue users as well as overall system performance. xTRAC controls rogue users seamlessly based on traffic load, while improving goodput by upto 58\%. All control mechanisms have been implemented at a web proxy, assumed to be on the organizational LAN and performance gains have been demonstrated by simulation-based experiments. It may be noted that the scheme may be extended to  any router through which organizational traffic flows. An additional benefit is the easy deployment - only the web proxy or router implementation needs to be changed. 
+
+The approach to control peak-hour congestion in this work is to incentivize responsible usage with good performance and penalize excessive and wasteful usage with limited performance, while improving aggregate performance of the system. In this work, excessive and wasteful usage has been referred to as \emph{abusive} usage, rogue users as \emph{high} users and regular users as \emph{low} users. In our previous work~\cite{references:sait15}, techniques for classifying high and low users were devised; here the category of the users is assumed to be known.
+
+%The paper has been structured as follows. Section \ref{sec:relwork} lists the related work. Section \ref{sec:back} gives an overview of the working of the web proxy. Section \ref{sec:ctrl} describes the control mechanism including the algorithms and schemes devised. Section \ref{sec:setup} describes the experimental set-up. Experiments and results are discussed in Section \ref{sec:exp}. Finally the conclusion is in Section \ref{sec:conc}.
+
+% In ~\cite{references:sait15} we devised a machine learning based classifier to classify the users' usage into normal and abusive categories. In this work, it is assumed that users have been categorized into \emph{abusive} or \emph{high} and \emph{normal} or \emph{low} usage categories. 
+
+
+
+\section{Background and Related Work}
+\label{sec:back}
+Fig. \ref{fig:simsetup} shows the general topology of an organization's  access network. All upstream traffic passes through a enterprise gateway to an ISP router, and then to the Internet, and vice versa for downstream traffic. Since all Internet traffic passes through the access network, it serves as a vantage point where control policies can be applied. In order to control downloads, it is essential for a receiver-based flow control technique like TCR to be applied; admission control of flows is essential for good performance. This section gives an overview of these techniques in the context of controlling abusive Internet access. Since this work demonstrates the control mechanism at the web proxy, an overview of web proxies is also included in this section. Finally, prior work related to this area has been discussed.
+%This work demonstrates how control mechanisms can be applied at a web proxy, located at the access network of an enterprise. This section gives an overview of web proxies and the general TCR approach that is used to control flows.
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=3.5in]{../../images/simsetupv2}
+% where an .eps filename suffix will be assumed under latex,
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Organizational access network topology}
+\label{fig:simsetup}
+%\vspace{-3mm}
+\end{figure}
+%\vspace{-0.5cm}
+	\begin{figure}[hbt]
+		\begin{center}
+		\subfloat[Window sizing]{\label{fig:wsz}\includegraphics[height=3.5cm]{../../images/windowsizing.eps}}\\ %\hskip 0.3cm
+		\subfloat[ACK spacing]{\label{fig:acksp}\includegraphics[height=2.1cm]{../../images/ackspacing.eps}}
+		\caption{TCP Rate Control illustrated}
+		\label{fig:tcr}
+		\end{center}
+	\end{figure}
+%\vspace{-0.5cm}
+	
+\subsection{TCP Rate Control (TCR) Approach}
+
+When a large number of flows transmit packets over a bottleneck link, packet retransmissions and timeouts result in poor per-user goodput. In order to avoid this, it has been recommended to rate control the flows~\cite{references:morris97}. For download traffic, rate control may be achieved by receiver based flow control. The TCR approach~\cite{references:karandikar} is an example of this mechanism that can be used to control the download traffic on a congested link. It controls the flows by manipulating the advertised window. By dividing available bandwidth in a controlled manner by advertised window adjustment, packet retransmissions and timeouts leading to poor performance during peak-hours can be avoided.
+
+%The case of a large number of flows transmitting packets over a bottleneck link was dealt with in~\cite{references:morris97}. They state based on numerical and experimental analysis that with sufficiently large number of flows, the packet drop rate will approach a value above 50\% despite aggressive backoff (during packet drops). They recommend using rate control for the case of a large number of flows sharing a bottlenecked link when the window size is small. 
+
+%The TCR approach achieves max-min fairness with TCP closed loop feedback. It may be applied at any intermediate point between the source and the destination.
+
+The two important aspects of TCR are window sizing and ACK spacing. While window sizing refers to the modification of advertised window in the ACKs for flow control, ACK spacing is the spacing out of ACKs. As ACKs clock the sending of data at the sender, ACK spacing reduces the burstiness of traffic. They are used in the control mechanism at the web proxy as shown in Fig. \ref{fig:tcr}.
+
+TCR gives new flows an equal share of the bandwidth, and frequently reallocates bandwidth unutilized by backlogged flows to other flows which need it. In this way,  TCR approach achieves max-min fairness with the aid of TCP closed loop feedback. It may be applied at any intermediate point between the source and the destination. A detailed description of an implementation of TCR will be described in Sec. \ref{sec:ctrl}.
+
+\subsection{Admission Control}
+\label{sec:admctrl}
+
+TCR approach reduces retransmissions and timeouts by controlling the total bandwidth allocated to all flows; in this way, it avoids bad per-user goodputs. Yet, bad per-user goodputs are still possible during peak hours when flows overcrowd the bottleneck link. Internet users terminate or lose interest in delayed responses; the result is that the \emph{useful bytes} downloaded is drastically reduced. Prior work~\cite{references:banchs02}\cite{references:kumar}\cite{references:mortier00} used admission control in order to improve performance for the case of a large number of flows sharing a bottleneck link. In this work too admission control is used for effective link utilization and to boost system performance.
+
+\subsection{Web Proxies}
+Typically in organizations providing Internet access to their employees, all traffic passes through a single gateway to the ISP, and then to the Internet. This gateway is frequently a \emph{forward} proxy; it receives requests from clients on the LAN, and forwards them to the remote server; responses sent back from the remote server to the proxy are then returned to the client. The forward proxy may filter/modify requests and cache/modify responses.
+
+\begin{figure}[hbt]
+\centering
+  \includegraphics[width=3.5in]{../../images/webaccessthruproxy.eps}
+ \caption{Web access though proxy}
+\label{fig:webaccthruproxy}
+\end{figure}
+%\vspace{-0.5cm}
+
+A \emph{web proxy} forwards HTTP requests. Fig. \ref{fig:webaccthruproxy} shows the sequence of steps when a user accesses a web page through a web proxy. First, a TCP connection is established with the web proxy, and then the HTTP request is sent on the connection. The web proxy parses the HTTP request, obtains the domain name (URL) on which the request is being performed. Then, it performs a DNS lookup in order to obtain the IP address of the (remote) web server. It then establishes a TCP connection with the web server, and forwards the HTTP request to it. The web server in turn sends the HTTP response back to the proxy server. The proxy server then forwards the response back to the client. Once a connection is established, the connection may be \emph{kept alive}, and may exchange any number of HTTP request/response pairs. The first HTTP request of a web access is called an \emph{initiating} request. Requests that follow will be referred as \emph{subsequent} requests.
+
+%In HTTP 1.x, only a single request/response pair is active at a time. As we mentioned in section \ref{sec:http11}, eventhough HTTP 1.1 has request pipelining so multiple transfers can be active at a time, it is seldom used because of the head of line blocking problem. However, HTTP 2.0 may have multiple transfers active at the same time.
+
+In this work both TCR approach and admission control have been applied at the web proxy to control downloads. 
+%As mentioned before, the TCR algorithm~\cite{references:karandikar} is enhanced in order to control abusive users.
+
+%During peak hour, the large number of simultaneous connections and consequent reduction in per-flow goodputs may lead to termination of the connection by the user, and in other cases, the user loses interest owing to a poor connection. When a large fraction of users do this, it reduces substantially the goodput of the link. Therefore, it is proposed to augment the algorithm in ~\cite{references:karandikar} with admission control to limit the number of simultaneous flows.
+
+
+\subsection{Related Work}
+\label{sec:relwork}
+
+ISPs have attempted to control peak-hour congestion using pricing policies. In organizations, pricing is non-existent and such networks are essentially \emph{flat-rate} networks. In order to control abusive usage, suitable control mechanisms need to be applied in organizations to penalize high users, and incentivize responsible usage, which will lead to efficient use of Internet access links. Congestion Manager~\cite{references:balakrishnan99} is an example of an end-to-end congestion management system. It is a \emph{voluntary} approach in which applications adapt to congestion in the network. Other approaches control subscribers by applying control policies at the bottleneck link. In \emph{quota-based} systems, a quota is maintained for each user, and when the quota is exceeded, the flows of the user are controlled at the bottleneck link. In ~\cite{references:lin}~\cite{references:paine} such flows are placed in a low priority queue and forwarded on a \emph{strict priority} basis. This is called \emph{quota-based priority control} (QPC); this however does not control peak-hour congestion. A \emph{time-of-day} pricing scheme may be applied in order to control peak-hour congestion. In this scheme, quotas are used up at different rates during different hours of the day~\cite{references:chu}. Other schemes \emph{incentivize responsible usage} by giving users limited but good service quality during peak-hours~\cite{references:lee11}. 
+
+Organizational download traffic may be controlled by using traditional schemes like PFQ, CBQ, RED~\cite{references:wei} or QPC~\cite{references:lin} in the downstream direction at the ISP gateway connected to the organization. However, this is not feasible - firstly because ISPs are responsible for enforcing SLAs rather than intra-organizational control, which is outside the purview of the ISPs. Secondly, ISPs are not always able to distinguish between users because of network address translation (NAT).
+
+Download traffic is normally controlled by \emph{receiver-based} mechanisms. In Congestion Manager~\cite{references:balakrishnan99}, the receiver controls download traffic by echoing standard congestion indicators like explicit congestion notification (ECN) and packet drops back to the sender. The sender in turn adjusts the sending rate. This is an end-to-end control mechanism which involves changes to both source and destination. A mechanism for controlling misbehaved sources which do not react to congestion control measures is found in ~\cite{references:li13}; they call their mechanism \emph{back-pressure routing}; the difference in queue lengths for packets of the same class (source, destination pair) on adjacent routers close to the destination is used to decide the traffic of that class that should flow on the link. Excessive packets are dropped; the technique may be used for TCP as well as UDP traffic. For well behaved sources, \emph{receiver-based flow control} may be accomplished by modifying advertised window field in ACKs. TCR~\cite{references:karandikar} is one such scheme to control TCP flows by manipulating the advertised window. Firstly poor per-user goodputs during congestion due to packet retransmissions and timeouts are avoided; secondly, unfairness between flows is avoided. Similar techniques for controlling TCP flows by adjusting the advertised window have been used in different domains. In the WLANs domain, unfairness due to different data transmission rates of stations, and also due to the imbalance between upstream and downstream traffic may be resolved by manipulating the advertised window when the station is the receiver~\cite{references:kashibuchi}. The advertised window has also been used in~\cite{references:koga}~\cite{references:palazzi10} to rate limit elastic TCP traffic for better performance of real-time applications. Bluecoat's PacketShaper\cite{references:packetshaper16} is a commercial software based on TCR that provides different policies which may be set by the network administrator to rate limit different traffic classes e.g. rate limit greedy traffic to protect latency sensitive applications or rate limit top \emph{talkers} and \emph{listeners} on the network. In this work, two variants of the general TCR approach, called  \emph{relative TCP rate control} (RTCR) and \emph{exclusive TCP rate and admission control} (xTRAC) have been used to rate control flows belonging to high users.
+
+Control of high users should be accomplished while preserving the aggregate performance of the bottleneck link. As mentioned before, when too many flows share a link, it leads to low per-user goodput; users terminate the connection out of impatience resulting in a reduction of total useful bytes transferred at the bottleneck link. Prior work has used admission control in order to improve performance for the case of a large number of flows sharing a bottleneck link. Admission control for TCP flows may be performed at any intermediate router, and a flow may be admitted if there is room for it~\cite{references:mortier00}. It has also been performed to reduce the peak-hour TCP traffic in a campus network~\cite{references:kumar}. Admission control for intra-customer \emph{DiffServ} flows on ingress into an ISP network using the Assured Forwarding (AF) per-hop behavior (PHB) has been studied in~\cite{references:banchs02}. They argue based on simulation results that admission control is essential in such a scenario. In this work as well, admission control is used to overcome the deterioration in goodput arising out of user impatience. 
+%Each customer has a contracted Customer Information Rate (CIR) at which he/she can transmit packets. During \emph{underload}, all packets are marked as \emph{in} packets, but during overload, a significant fraction of packets are marked as \emph{out} packets. The latter are dropped from core routers implementing WRED with a higher probability. During overload, a user gets much less than the CIR of goodput as many of the flows are terminated by the user out of impatience. They argue based on simulation results that admission control is essential in such a scenario. In this work as well, admission control is used to overcome the deterioration in goodput arising out of user impatience. 
+
+%The efficacy of control mechanisms devised in this work has been demonstrated using simulation-based experiments, by implementing them at a web proxy. It may be noted that alternatively, the mechanism may be implemented at an intermediate router on the organizational LAN through which all traffic flows.
+
+\section{Control Mechanism}
+\label{sec:ctrl}
+
+Control of peak-hour congestion at a bottleneck link connecting an ISP to an enterprise subscriber is the subject of this work. In this work, this is performed by controlling high users' flows, thereby making bandwidth available to low users' flows. The aggregate performance should be preserved while controlling the former category's flows. In this section, a simple implementation of TCR, called \emph{simple TCR} (STCR) is described for controlling HTTP traffic at the web proxy. Then, two schemes based on STCR to control abusive usage - RTCR and xTRAC have been described. 
+
+%As mentioned before control mechanisms have been demonstrated by implementation at the web proxy.
+
+% they suggest this is due to the imbalance between backoff during packet drops and increase in transmitted packets after a coarse-grained timeout. When packets are dropped, the congestion window is halved whereas after a coarse-grained timeout, there is a sudden jump from one packet per time-out to one or more packets per RTT during slow start. 
+
+
+
+\subsection{Simple TCP Rate Control (STCR)}
+\label{sec:htcr}
+
+%The TCR approach achieves max-min fairness with TCP closed loop feedback. It may be applied at any intermediate point between the source and the destination. 
+
+
+\begin{comment}
+ Initially, flows are allocated a rate 
+
+\[
+A_i = \frac{B}{N}
+\]
+\end{comment}
+
+%The two important aspects of TCR are window sizing and ACK spacing. While window sizing refers to the modification of advertised window in the ACKs for flow control, ACK spacing is the spacing out of ACKs. As ACKs clock the sending of data at the sender, ACK spacing reduces the burstiness of traffic. They are used in our control mechanism at the web proxy as shown in Fig. \ref{fig:tcr}.
+
+% but adjusted for application at the receiver (i.e. the web proxy), and for handling HTTP traffic which consists of a substantial fraction of small flows. The rate control algorithm has been called \emph{H-TCR}.
+
+% While ~\cite{references:karandikar} performs rate allocation whenever a new flow is added, a flow stops sending or at the end of a sampling interval. As HTTP flows have a high turnover rate, rate allocation is performed only at the end of the sampling interval, thereby avoiding the overhead associated with performing the rate allocation step frequently.
+Simple TCR (STCR) is a simple implementation of TCR for controlling HTTP traffic at the web proxy, which is the receiver for the download traffic. STCR performs two important functions called \emph{rate allocation} and \emph{rate enforcement}. In the rate allocation step, STCR divides the bottleneck bandwidth among the flows; in the rate enforcement step, this rate is implemented by setting the advertised window field in the ACKs, and spacing out the ACKs.
+
+STCR performs rate allocation at the end of each sampling interval; Fig. \ref{fig:ratealloc} shows the rate allocation algorithm. For each flow, the allocated rate $A_i$, observed rate $R_i$, previous allocated rate $A'_i$, advertised window in packets $w_i$, its previous value $w'_i$ and weight $c_i$ are maintained. In the loop shown in lines (\ref{alg:foreach1}) to (\ref{alg:endfor1}), each flow is marked as hungry or not hungry based on whether the flows are in need of more bandwidth or not; the sum of weights of hungry flows $N_h$ is counted and the total bandwidth consumed by all flows $C$ is computed. Next, in line (\ref{alg:compu}) unutilized bandwidth $U$ is computed as $B - C$ where $B$ is the total link capacity of the bottleneck link. In lines (\ref{alg:foreach2}) to (\ref{alg:endfor2}), this unutilized bandwidth $U$ is then divided among the hungry flows in a weighted manner. The default value of $c_i$ is 1.
+
+In Fig. \ref{fig:ratealloc}, flows are marked as hungry or non-hungry using a function \emph{isHungry()} in lines (\ref{alg:foreach1}) to (\ref{alg:endfor1}). While allocated rates of hungry flows increase, the allocated rates of non-hungry flows are reduced to $ (A_i+R_i) / 2$ (line (\ref{alg:reduce})). This has the effect of gradually reducing the rate in successive sampling intervals to $R_i$. 
+%The function $isHungry()$ decides based on the values $R_i$, $A_i$ and $O_i$  whether flow $i$ is hungry or not, where $O_i$ is the allocated rate in the previous sampling interval.
+\begin{figure}[hbt]
+\centering
+\begin{algorithmic}[1]
+\STATE $ C \leftarrow 0 $
+\FOR{each flow i} \label{alg:foreach1}
+	\IF{ $newFlow[i]$ \Or $isHungry(t, A_i, R_i, A'_i)$ } \label{alg:ishungry}
+		\TWOSTATE {$ hungry[i] \leftarrow true $;} { $C \leftarrow C + A_i$;}
+		\STATE $N_h \leftarrow N_h + c_i$
+	\ELSE 
+		\TWOSTATE {$hungry[i] \leftarrow false $;}{$C \leftarrow C +  R_i$;}
+		\TWOSTATE {$A'_i \leftarrow A_i$;} {$A_i \leftarrow \frac{A_i + R_i}{2}$;} \label{alg:reduce}
+	\ENDIF
+\ENDFOR \label{alg:endfor1}
+\STATE $ U \leftarrow B - C $ \label{alg:compu}
+\FOR{each flow i} \label{alg:foreach2}
+	\IF{ $hungry[i] = true$ }
+		\TWOSTATE {$A'_i \leftarrow A_i$;}{$ A_i \leftarrow A_i + U \times \frac{c_i}{N_h} $;}
+	\ENDIF
+	\STATE $w'_i \leftarrow w_i$
+\ENDFOR \label{alg:endfor2}
+\STATE $ start \leftarrow t $
+\end{algorithmic}
+\caption{Rate Allocation}
+\label{fig:ratealloc}
+\end{figure}
+%\vspace{-0.5cm}
+
+TCR rate allocation complexity varies between O(1) and O(n) depending on the algorithm chosen~\cite{references:karandikar}. The general TCR approach does rate allocation every time a new flow joins, at the end of the sampling interval and when a flow stops sending. As HTTP traffic has a high turnover rate, STCR rate allocation is done only at the end of the sampling interval in order to avoid overheads. In the algorithm shown above the complexity is O(n), but it is only O(1) when the cost is amortized over the entire sampling interval. 
+
+%Note in Fig. \ref{fig:ratealloc} that each flow is associated with a weight $c_i$; STCR sets its value to 1; its use will be discussed later when RTCR is described. 
+
+\par Fig. \ref{fig:rateenf} describes the rate enforcement step; it is performed every time the advertised window field in the ACK is set. $w_i$ is set as shown in line (\ref{alg:line1}).  However, as flow control should also be performed, it is capped with $W_{\mathrm{TCP}}$, the advertised window computed by TCP receiver based on available buffer space (line (\ref{alg:wincap})). The value $W_i$, the advertised window, is then written to the ACK. It may be noted that for a flow $i$, the new allocated rate (and advertised window) takes effect only after one $RTT_i$ into the sampling interval. The sending rate should then be matched with the ACK spacing at the receiver since the rate of the flow is controlled by the ACK spacing. This 'synchronization' is performed in lines (\ref{alg:ifelsestart}) to (\ref{alg:ifelseend}). The function \emph{isHungry()} (Fig. \ref{fig:ratealloc}) compares the allocated rate with the calculated rate in order to determine if the flow is bottlenecked; it considers allocated rate $A'_i$ for the first RTT and $A_i$ for subsequent RTTs.
+
+\begin{figure}[hbt]
+\centering
+\begin{algorithmic}[1]
+%\FOR{each flow i}
+	\STATE $w_i \leftarrow A_i \times \frac{\mathrm{RTT_i}}{\mathrm{MSS_i}}$ \label{alg:line1}
+	%{$\delta_{i} \leftarrow \frac{RTT_i}{w_i}$;}
+	\IF{ $t - start \leq \mathrm{RTT_i}$ } \label{alg:ifelsestart}
+		\STATE $\delta_{i} \leftarrow \frac{\mathrm{RTT_i}}{w'_i}$
+	\ELSE
+		\STATE $\delta_{i} \leftarrow \frac{\mathrm{RTT_i}}{w_i}$	
+	%	\STATE $W_i \leftarrow W_{TCP}$
+	\ENDIF \label{alg:ifelseend}
+	\STATE $W_i \leftarrow \min(w_i \times \mathrm{MSS_{i}}, W_{\mathrm{TCP}})$ \label{alg:wincap}
+%\ENDFOR
+\end{algorithmic}
+\caption{Rate Enforcement}
+\label{fig:rateenf}
+\end{figure}
+%\vspace{-0.5cm}
+
+
+%\par As the allocated rate represents the bytes that can be transmitted by the sender without receipt of acknowledgement, it directly determines the estimated window for that flow. Therefore, the rate enforcement step (see Fig. \ref{fig:rateenf}) uses this allocated rate in order to compute the size of the estimated window ($w_i$) in terms of number of packets. 
+
+
+%This technique has been adapted to administer fairness in different domains. For example, ~\cite{references:kashibuchi} applies it in WLANs, and ~\cite{references:muniz} applies it in the power line commununications domain.
+% While the advertised window is primarily for flow control, the sender uses the congestion window for congestion control; marking and dropping packets are done by intermediate nodes to signal the endpoints the onset of congestion (congestion avoidance). The above techniques have been used in a variety of domains to rate control the traffic. 
+
+
+
+
+
+
+%\par where $U$ is unutilised bandwidth, $R_i$ is the calculated rate of flow $i$ in the previous sampling interval, $A_i$ is the allocated rate in the previous sampling interval, $b$ is a satisfaction factor, $N_h$ is the number of hungry flows, $c_i$ is the weight of the flow(low users get larger weight), $MSS_i$ is the maximum segment size for flow $i$, $W_{TCP}$ is the advertised window computed by the TCP flow control mechanism, $w_i$ is the computed window size in units of packets, $W_i$ is the computed window size in bytes, $\delta_{i}$ is the computed ACK spacing, $s$ is the sampling interval.
+
+\par During the course of the sampling interval, STCR allocates an initial window $w_0$ packets to new flows in their first RTT; terminated flows release bandwidth; the total used bandwidth is not explicitly restricted below the link capacity $B$, and this leads to bursty traffic if new flows use more bandwidth than what is released by terminated flows.  When the aggregate bandwidth allocated to all the flows exceeds the capacity of the link, the link is \emph{overbooked}. A surge in the number of requests leading to overbooking of the link is called a \emph{request surge}. Sometimes flows are allocated a high bandwidth which they are unable to use. This is called \emph{internal wastage} of bandwidth; it leads to ineffective utilization of link, which translates to larger overall response times. Schemes based on STCR will be discussed next.
+
+\subsection{Relative TCP Rate Control (RTCR)}
+
+Rate limiting of high users' flows may be performed by tweaking the $c_i$ value in Fig. \ref{fig:ratealloc}. Each low user's flow may be associated with a weight $c_l$, and each high user's flow may be associated with a weight $c_h$, $c_l > c_h$. Unutilized bandwidth is then divided among the flows proportionate to their weights. We refer to the ratio $c_l / c_h$ as the \emph{relative preference}. This scheme is called \emph{relative TCP rate control} (RTCR). Although RTCR helps to control high users' flows, large values of relative preference exacerbate internal wastage of link capacity.
+%A link that is effectively utilized gives good average response times. Bad link utilization translates to bad response times.
+
+\begin{figure}[hbt]
+\centering
+  \includegraphics[scale=0.25]{../../images/proxyarch4.eps}
+ \caption{xTRAC scheme}
+ \label{fig:htcrsq}
+\end{figure}
+%\vspace{-0.5cm}
+
+\subsection{Exclusive TCP Rate and Admission Control (xTRAC)}
+
+As mentioned before in Sec. \ref{sec:admctrl}, admission control may be performed in order to increase the per-user goodput of currently active flows, and thereby increase the useful bytes transmitted on the link. So, rate control should be augmented with admission control. It is illustrated in Fig. \ref{fig:htcrsq}.  A dedicated fraction of the bandwidth is allocated to the low users, and likewise for the high users. For each category, a limit is fixed on the maximum number of external TCP connections. When this limit is reached, new (initiating) requests of high and low users are placed in separate queues at the application layer. On the other hand, if a subsequent request arrives, it is is forwarded for better performance without being held up.
+Even-though admission control mitigates overbooking of the link to a large extent, overbooking is still possible in the case of xTRAC because subsequent requests may arrive on an inactive connection, when the maximum limit on the number of external connections has been reached.
+
+\section{Performance Evaluation Modeling}
+\label{sec:setup}
+
+Experiments have been performed by way of simulations. Fig. \ref{fig:lantopology} shows the topology used in simulations; many clients in a LAN (campus computers) connect to servers through a bottleneck link with bandwidth 32Mbps. All other links in the network are allotted a much higher bandwidth, so that they are not bottlenecked. This is a typical dumbell topology in which numerous clients connect by way of a bottleneck link to many remote servers and is suitable to analyze performance at the bottleneck link. RTTs vary between 50-200ms. The number of hosts in the LAN is varied in order to change the traffic load on the proxy server.
+%The LAN topology is shown in Fig. \ref{fig:simsetup}. A LAN connects to the Internet through a web proxy. The link connecting the proxy server to the ISP gateway is the bottleneck link (32Mbps). 
+
+
+\begin{figure}[hbt]
+\centering
+  \includegraphics[scale=0.19]{../../images/topology-current.eps}
+ \caption{Simulated LAN Topology}
+ \label{fig:lantopology}
+\end{figure}
+%\vspace{-0.5cm}
+
+%At IITM, there are 6000 users being served by a 100Mbps link. A fraction of these users is sufficient to cause congestion during peak hours. The bottleneck link used in this topology is about a third (32Mbps) and it was observed that a user load of 1400 users was sufficient to cause congestion. Traffic characteristics used in the simulations have been extracted from IITM proxy server logs.
+
+
+\subsection{Traffic Generation}
+
+The \emph{inter-session} time is the time between successive web accesses for the same user. The inter-session times and HTTP response sizes were collected from IITM proxy server logs and distributions matching them were chosen.  The distribution of inter-session times for users has been modelled as a mixture of 3 exponentials with weights 0.37, 0.47, 1.6 and corresponding means 1.8, 12 and 100(s). The distribution of response sizes has been modelled as a lognormal distribution with $\mu = 7.76$, $\sigma = 1.63$. 
+	
+\begin{comment}	
+\begin{table}[ht]
+%% increase table row spacing, adjust to taste
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{Inter-session time distribution - mixture of exponentials}
+%\label{exectime}
+\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+\resizebox{5cm}{!}{
+\begin{tabular}{|c|c|}
+\hline
+ Mixture Weight & Mean(s) \\
+\hline
+0.37&1.8\\
+0.47&12\\
+0.16&100\\
+\hline
+\end{tabular}
+}
+\label{tab:mixdet}
+\end{table}
+
+\begin{table}[ht]
+%% increase table row spacing, adjust to taste
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{\emph{CDF} for observed and assumed response size distributions}
+%\label{exectime}
+\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+\resizebox{7cm}{!}{
+\begin{tabular}{|c|c|c|}
+\hline
+ $x$ & Observed CDF & Assumed CDF \\
+ & $F(\cdot)$ & $F'(\cdot)$\\
+\hline
+\hline
+1000&0.30&0.30\\
+\hline
+10000&0.87&0.81\\
+\hline
+100000&0.986&0.989\\
+\hline
+1000000&0.998&0.9998\\
+\hline
+\end{tabular}
+}
+\label{tab:respszcdf}
+\end{table}
+\end{comment}
+
+Flows may be \emph{small} or \emph{large} flows. A small flow is one which is involved in a web page view, and consists of a few request/response interchanges with a remote server through a proxy; these interchanges are non-overlapping i.e. the next request is sent only after the current response has been received, and after a certain delay. Therefore small flows have been modelled as 4 request/response interchanges, with an inter-request gap of 400ms. Each of the 4 request/response interchanges goes over the same TCP connection simulating the case of a connection with keep-alive header enabled. Each response has a size less than 50MSS.
+
+A large flow, on the other hand is one which involves a download (video, archive, executable etc.). A large flow has been modelled as a single request/response interchange with response size greater than 50MSS. 
+
+Equal volumes of high and low user traffic were generated.
+%As our objective is only to control TCP flows, we have not modelled streaming traffic(XXX).
+\subsection{Performance Metrics}
+Both \emph{control} metrics as well as \emph{system} metrics have been chosen as a measure of performance. While control metrics measure the performance of low flows viz-a-vis high flows, system metrics measure the aggregate performance of the system. Control metrics used are \emph{number of completed connections} for small flows and \emph{throughput} for large flows. \emph{Goodput}, \emph{packet drop ratio} (at bottleneck link) and \emph{average response times} (average time taken for download) are aggregate metrics. Instead of measuring goodput, the total useful bytes downloaded for each algorithm have been reported. This figure excludes the bytes wasted due to terminated connections.
+
+
+\subsection{User impatience}
+User impatience has also been modelled. It has been assumed that a user terminates a web access (a small flow) after waiting for a suitable time, modelled as a random variable
+
+\[
+Q = q_{min} + Q_e
+\]
+
+where $q_{min}$ is a constant representing the minimum wait time and $Q_e \sim Exp(1/\mu_Q) $ is the extra wait time. In our experiments $q_{min}$ has been set to 3.5s, and $\mu_Q$, the average extra wait time has been set to 3s.
+
+On the other hand, for large downloads it has been assumed that the user checks the status of the download at a time when he/she expects the download to complete; this is the time taken for the download to complete at a rate of $p_{sat}$, a satisfactorily high rate. The user accurately estimates and checks at this time; if he/she is not satisfied with the throughput of the flow, he/she disconnects. Satisfactory throughput is modelled as 
+
+\[
+P = p_{min} + P_e
+\]
+
+where $p_{min}$ is a constant representing the minimum satisfactory throughput, $P_e \sim Exp(1/\mu_P)$ is the extra expected throughput. In our experiments $p_{sat}$ has been set to 160 kbps, $p_{min}$ has been set to 24kbps, and $\mu_P$, the average extra satisfactory throughput has been set to 24kbps.
+	
+\subsection{Simulation Setup}
+
+The time duration for each experiment was 500s. For each experiment the statistics were averaged over 10 runs with different seeds; statistics were found to have a standard deviation within 5\% of the mean.
+
+\section{Performance Results}
+\label{sec:exp}
+
+In the following sections, the performance of the different schemes is analyzed. 
+%The architecture of our web proxy (see Fig. \ref{fig:htcrsq}) indicates that different categories are treated as though they are served at different web proxies - due to the exclusive nature of bandwidth reservations and separate request queues. It is therefore useful to analyze the performance for a single category of users for different bottleneck link capacities. 
+
+	\begin{figure}[hbt]
+		\begin{center}
+		%\subfloat{\label{fig:lresp}\includegraphics[width=4cm]{../../images/cmpresp.eps}}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqperfthruput.eps}} %\hskip 0.3cm
+		\subfloat{\label{fig:luseful}\includegraphics[width=4.5cm]{../../images/cmpdwnld.eps}}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqfracterm.eps}}		
+		\subfloat{\label{fig:lcompl}\includegraphics[width=4.5cm]{../../images/cmpcompl.eps}}	
+		%\subfloat{\label{fig:lresp}\includegraphics[width=4cm]{../../images/cmptput.eps}} \\
+		\caption{RTCR performance for a 32 Mbps bottleneck link across different user loads for relative preference values 10 and 100}
+		\label{fig:htcrrp}
+		\end{center}
+	\end{figure}	
+	%\vspace{-0.5cm}
+	
+\subsection{Relative TCP Rate Control (RTCR)}
+
+RTCR is applied with relative preference set to 10 and 100 for different user loads. The results in this case are shown in Fig. \ref{fig:htcrrp}. Results indicate limited control over high users; useful bytes downloaded is also affected. Severe rate restriction of high users leads to user impatience at heavier loads, leading to reduction in useful bytes. On the other hand, for lighter loads, internal wastage of bandwidth allotted to low users leads to reduction in useful bytes. Useful bytes is between 55-80\% of link capacity (maximum is 2GB - 32 Mbps for 500s) for all loads. Based on this, it may be inferred that restriction with relative preference leads to inefficient link utilization and limited control over high users. 
+
+% Firstly to increase useful bytes, admission control may be applied. Secondly, to improve the control over high users' flows, a distinct fraction of bandwidth may be reserved for both categories. In this way, severe rate restrictions on abusive users which lead to loss in useful bytes, may be circumvented.
+
+
+\subsection{Exclusive TCP rate and admission control (xTRAC)}
+\label{sec:tcracalgo}
+
+In the previous section it was noted that the relative preference offered limited control, and at the price of efficient link usage. The xTRAC scheme offers an alternative way of controlling abusive usage by applying a rate restriction on the aggregate of high and low flows separately. This scheme is equivalent to the case when each category's flows take a distinct gateway with its own access speed to the Internet. It would be beneficial then to analyze the system performance for a single category of users under different user loads. The results for xTRAC single and multiple category case are presented below.
+
+	\begin{figure*}[hbt]
+		\begin{center}
+		\subfloat{\label{fig:lresp}\includegraphics[width=5cm]{../../images/twoqlperfresp.eps}}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqperfthruput.eps}} %\hskip 0.3cm
+		\hspace{0.5cm}
+		\subfloat{\label{fig:luseful}\includegraphics[width=5cm]{../../images/twoqlperfuseful.eps}}
+		\hspace{0.5cm}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqfracterm.eps}}		
+		\subfloat{\label{fig:ldrop}\includegraphics[width=5cm]{../../images/twoqlperfdrop.eps}}	\\
+		\caption{Comparison of performance under light load for different bottleneck link capacities as $\alpha$ is varied}
+		\label{fig:twoqlperf}
+		\end{center}
+	\end{figure*}	
+	%\vspace{-0.5cm}
+
+	\begin{figure*}[hbt]
+		\begin{center}		
+		\subfloat{\label{fig:hresp}\includegraphics[width=5cm]{../../images/twoqperfresp.eps}}
+		\hspace{0.5cm}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqperfthruput.eps}} %\hskip 0.3cm
+		\subfloat{\label{fig:huseful}\includegraphics[width=5cm]{../../images/twoqperfuseful.eps}}
+		\hspace{0.5cm}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqfracterm.eps}}		
+		\subfloat{\label{fig:hdrop}\includegraphics[width=5cm]{../../images/twoqperfdrop.eps}}
+		\caption{Comparison of performance under heavy load for different bottleneck link capacities as $\alpha$ is varied}
+		\label{fig:twoqperf}
+		\end{center}
+	\end{figure*}
+	%\vspace{-0.5cm}
+	
+\subsubsection{xTRAC Single Category}
+The following scheme is presented to enable analysis of this mechanism. The average RTT between the hosts and the servers, obtained from our simulations is 136ms; in that case a bottleneck link of 32Mbps would transfer $32 \times 10^6 \times 0.136/(8 \times MSS)$ packets in a single RTT. If MSS is assumed to be 1440, this value would be approximately 378 packets. If a maximum of $M$ active flows are allowed, then the minimum average allocated rate for each flow would be $378/M$ MSS/RTT. This \emph{minimum per-flow bandwidth} then is a significant parameter that influences the performance of the system. For ease of analysis, minimum per-flow bandwidth may be represented as $\alpha$, effective per-flow bandwidth as $\beta$, the bottleneck link capacity as $B$ MSS/RTT, the maximum active flows as $M$ and actual number of flows as $m$. Then we have the relation
+
+\begin{equation}
+\label{Eq:eq2}
+\alpha = \frac{B}{M} \leq \beta = \frac{B}{m}
+\end{equation}
+
+It should be noted from \eqref{Eq:eq2} that for light loads $\beta \geq \alpha$, $ m \leq M$ whereas for heavy loads $\beta \approx \alpha$ and $m \approx M$ i.e. for light loads all slots are not occupied; when the user load is increased, all slots get occupied frequently so that $\beta \rightarrow \alpha$, $m \rightarrow M$.
+%\subcaptionbox{\label{fig:ubwait}}{\includegraphics[width=5cm]{../images/waittime.eps}} %\hskip 0.3cm
+\begin{comment}
+	\begin{figure*}[hbt]
+		\begin{center}
+		\subcaptionbox{\label{fig:lresp}}{\includegraphics[width=4cm]{../../images/twoqlperfresp.eps}}
+%		\subfloat{\includegraphics[width=3.9cm]{../../images/twoqlperfthruput.eps}} %\hskip 0.3cm
+		\subcaptionbox{{\label{fig:luseful}}{\includegraphics[width=4cm]{../../images/twoqlperfuseful.eps}}
+%		\subfloat{\includegraphics[width=3.9cm]{../../images/twoqlfracterm.eps}}	
+		\subcaptionbox{\label{fig:ldrop}}{\includegraphics[width=4cm]{../../images/twoqlperfdrop.eps}}\\
+		\subcaptionbox{\label{fig:hresp}}{\includegraphics[width=4cm]{../../images/twoqperfresp.eps}}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqperfthruput.eps}} %\hskip 0.3cm
+		\subcaptionbox{\label{fig:huseful}}{\includegraphics[width=4cm]{../../images/twoqperfuseful.eps}}
+%		\subfloat{\includegraphics[width=4cm,height=4cm]{../../images/twoqfracterm.eps}}		
+		\subcaptionbox{\label{fig:hdrop}}{\includegraphics[width=4cm]{../../images/twoqperfdrop.eps}}		
+		\caption{Comparison of performance - single category}
+		\label{fig:twoqlperf}
+		\end{center}
+	\end{figure*}	
+\end{comment}
+
+
+
+
+Fig. \ref{fig:twoqlperf} compares the performance for light traffic loads for different bottleneck link capacities. The performance is similar in all cases. As $\alpha$ is increased, there is more scope for internal wastage, and thereby larger response times. Larger response times translate to a reduction in useful bytes because the rate at which users are serviced reduces. In each case shown, optimal performance is obtained when  $\alpha=1$ for light loads. 
+
+Fig. \ref{fig:twoqperf} compares the performance under heavy traffic loads for different bottleneck link capacities. A peak is seen for $\alpha=2$. This is a result of 3 trends. First, when $\alpha=1$, for heavy traffic it follows that $\beta\rightarrow 1$ and $m\rightarrow M$; so, user impatience with reduction in useful bytes results. This does not happen in the case of light loads (Fig. \ref{fig:twoqlperf}), as the effective per-flow bandwidth $\beta > \alpha$ and $m < M$. Secondly, note the large drop rate for  $\alpha=1$. This is because of request surge resulting in overbooking of the link, and resulting bad performance. Thirdly, as $\alpha$ increases, internal wastage and bad performance results. Note that in the case of heavy load, consistently good performance is obtained for $\alpha=2$ case. 
+
+Next, the results for the multiple category case are analyzed.
+
+\subsubsection{xTRAC Multiple Category}
+\label{sec:tcracsq}
+
+%A separate waiting queue is maintained for the two categories of users. Each category is allotted a fraction of the total bandwidth which is utilized exclusively for users belonging to this category. A maximum limit on the number of active flows for each category is set. 
+A fraction of link capacity needs to be reserved for low users which would result in good experience for them. This means that the low user traffic would essentially be a light load for the (large) quota allocated to it, and the high user traffic would be a heavy load for the (smaller) quota allocated to it. It was noted in the previous section that for heavy loads, $\alpha = 2$ is suitable and for light loads, $\alpha = 1$ is more suitable. From (\ref{Eq:eq2}), this means that $M=B/2$ and $M=B$ are suitable for high and low users respectively.
+
+%As the load on the low users quota is relatively light, a maximum active flows value corresponding to a per-flow bandwidth of $1\cdot MSS/RTT$ is set. For the high users on the other hand, as the load is heavy for that particular bandwidth quota, a maximum active flows value was assigned that would give a per-flow bandwidth of $2\cdot MSS/RTT$. 
+
+	\begin{figure}[hbt]
+		\begin{center}
+		\subfloat{\includegraphics[width=4.5cm]{../../images/twoqsrchresp.eps}}
+		%\hspace{1cm}
+		\subfloat{\includegraphics[width=4.5cm]{../../images/twoqsrchdwnld.eps}}\\ %\hskip 0.3cm
+		\caption{Performance of xTRAC for a 32 Mbps link and different user loads across different values of reservation}
+		\label{fig:twoqsrch}
+		\end{center}
+	\end{figure}	
+	%\vspace{-0.5cm}
+
+In Fig. \ref{fig:twoqsrch} the average low user response time and the useful bytes have been plotted as a function of the fraction of bandwidth reserved for low users; this is done for different user loads for a bottleneck link of 32Mbps. It may be noted from the plots that as expected, low user response times decrease when reservation is increased for them. The plot for useful bytes indicates that peaks for total useful bytes are obtained at different reservation values for different loads. This may be understood as follows - at heavy loads, a suitably large reservation for low users results in good performance for them; at the same time, this results in long wait good service (LWGS) treatment for high users - high users' flows wait a short while after which the requests are served fairly fast. Essentially most flows terminate without wastage in downloaded bytes, or completion without wastage. 
+
+%Further, in this case, as average response times for high users increase, high users are served at a slower rate, reducing the high user traffic. 
+
+\begin{table}[hbt]
+ \caption{Optimal reservation values for different user loads using xTRAC}
+ \label{tab:rsrvrespdwnld}
+ \centering
+ \begin{tabular}{|c|c|c|c|c|c|}
+ \hline
+  User  & Resrv. &  Resp. time & Useful. & \multirow{2}{*}{\boldmath$\frac{small_{lo}}{small_{hi}}$}& \multirow{2}{*}{\boldmath$\frac{tput_{lo}}{tput_{hi}}$}\\
+  load & lo users & lo users(s) & bytes(GB) &&\\
+ \hline
+ 800&0.5&2.68&1.62&0.92&1.14\\
+ \hline
+ 1000&0.52&3.02&1.82&1.03&1.18\\
+ \hline
+ 1200&0.65&3.05&1.71&1.72&1.29\\
+ \hline
+ 1400&0.8&3.00&1.74&3.28&1.32\\
+ \hline
+ 1600&0.93&3.01&1.80&12.25&1.28\\
+ \hline
+ 1800&1.0&3.03&1.82&$\infty$&NA\\
+ \hline
+ \end{tabular}
+\end{table}
+%\vspace{-0.5cm}
+
+Next, an average response time of 3 seconds was chosen as the criterion for good performance for low users. Table \ref{tab:rsrvrespdwnld} tabulates the reservations which correspond approximately to an average response time of 3 seconds for different traffic loads, and the corresponding performance.
+It indicates that a suitable reservation for low users leads to effective link usage, while controlling the flows of high users. Response times for low users are approximately 3s, useful bytes downloaded represent 85-90\% of link utilization, as the maximum limit is 2GB (32Mbps for 500s). Low users flows are served several times faster than high users depending on the user load, eventhough the throughputs of high users remain nearly the same as low users.
+
+%The minimum per-flow bandwidth required to achieve an average response time of 3s was found to have a mean of 2.138 with standard deviation 0.035 with 0 average queue length for low users requests. In order 
+\begin{table}[hbt]
+\footnotesize
+ \caption{Comparison of aggregate performance of xTRAC with plain TCP for different user loads}
+ \label{tab:cmpaggall}
+ \centering
+ \begin{tabular}{|c|c|c|c|c|}
+ \hline
+  User& Control & Resp. time & Useful bytes & Drop  \\
+  load& Method &(sec.)& (GB)&rate\\
+ \hline
+ \multirow{2}{*}{800}&No control&2.45&1.71&$1.07*10^{-3}$\\
+ \cline{2-5}
+ &xTRAC&2.72&1.62&0.0\\
+ \hline
+  \multirow{2}{*}{1000}&No control&3.21&1.80&$1.64*10^{-2}$\\
+ \cline{2-5}
+ &xTRAC&3.21&1.82&$3.28*10^{-5}$\\
+ \hline
+ \multirow{2}{*}{1200}&No control&4.22&1.63&$4.40*10^{-2}$\\
+ \cline{2-5}
+ &xTRAC&4.07&1.71&$2.3*10^{-4}$\\
+ \hline
+ \multirow{2}{*}{1400}&No control&5.17&1.44&$7.0*10^{-2}$\\
+ \cline{2-5}
+ &xTRAC&4.05&1.74&$1.60*10^{-4}$\\
+ \hline
+ \multirow{2}{*}{1600}&No control&6.03&1.28&$9.0*10^{-2}$\\
+ \cline{2-5}
+ &xTRAC&3.61&1.80&$2.13*10^{-4}$\\
+ \hline
+ \multirow{2}{*}{1800}&No control&6.86&1.15&$1.1*10^{-1}$\\
+ \cline{2-5}
+ &xTRAC&3.03&1.82&$3.69*10^{-4}$\\
+ \hline 
+ \end{tabular}
+\end{table}
+%\vspace{-0.5cm}
+
+A comparison of aggregate performance of xTRAC with the no control case in Table \ref{tab:cmpaggall} indicates that aggregate performance is better always except under light traffic conditions. A 58\% increase in useful downloaded bytes is observed for the highest load of 1800 users.
+
+
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command, the
+% \label for the overall figure must come after \caption.
+% \hfil must be used as a separator to get equal spacing.
+% The subfigure.sty package works much the same way, except \subfigure is
+% used instead of \subfloat.
+%
+%\begin{figure*}[!t]
+%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+%\label{fig_second_case}}}
+%\caption{Simulation results}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+
+
+% An example of a floating table. Note that, for IEEE style tables, the 
+% \caption command should come BEFORE the table. Table text will default to
+% \footnotesize as IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that IEEE does not put floats in the very first column - or typically
+% anywhere on the first page for that matter. Also, in-text middle ("here")
+% positioning is not used. Most IEEE journals/conferences use top floats
+% exclusively. Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the \fnbelowfloat
+% command of the stfloats package.
+
+
+
+\section{Conclusion}
+\label{sec:conc}
+A technique to control excessive and wasteful usage of Internet during congestion has been devised; the additional benefit of the scheme is that it incentivizes regular users and penalizes rogue users during congestion, thereby motivating responsible usage and efficient usage of Internet access links. 
+STCR, a simple algorithm based on the general TCR approach for rate controlling HTTP download traffic at the web proxy has been described. Then two schemes RTCR and xTRAC based on STCR were devised. While RTCR rate controlled the rogue users by dividing the unused bandwidth among individual flows in a weighted manner, xTRAC reserved a fraction of the bandwidth exclusively for each category and used TCR to rate control the flows of each category; it further performed admission control for each category. The former was limited in its control and aggregate performance; the latter on the other hand controlled rogue users seamlessly depending on the user load. During overload regular users are served several times faster than rogue users. The aggregate performance of the system is also better with xTRAC except in case of light loads. We have coined the term long wait good service (LWGS) to describe the treatment meted out to rogue users by xTRAC. They perceive a long wait followed by quick service when the flow is admitted. This serves to improve the goodput of the system.
+
+% The mechanism can be applied at any router through which Internet traffic ingresses into / egresses out of the network. Control has been accomplished at the web proxy by manipulating the advertised window field in the ACKs, and performing admission control on the flows. 
+The scheme incentivizes regular users and penalizes rogue users during congestion. This ultimately leads to control of rogue users, and easens out the congestion during peak hour. 
+
+Even-though we have implemented xTRAC at a web proxy, the same scheme may be implemented at any intermediate router. xTRAC, like TCR may be applied at any intermediate router through which Internet traffic egresses out of / ingresses into the network; this is true as long as it is possible to modify the advertised window field in the TCP header using deep packet inspection. On the other hand, admission control at a router would involve terminating new connections from the LAN to remote servers with a TCP RST when the maximum number of active connections has been reached. 
+
+A further benefit with xTRAC is the ease of deployment of such a scheme. Only a single host implementation needs to be changed; all other devices on the network are left intact.
+
+
+
+% conference papers do not normally have an appendix
+
+
+% use section* for acknowledgement
+
+
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtranS}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,references}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+%\begin{thebibliography}{1}
+
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+%\end{thebibliography}
+
+\bibliographystyle{../../IEEEtranS}
+\bibliography{../../IEEEabrv,../../references} 
+
+
+% that's all folks
+\end{document}
+
+
