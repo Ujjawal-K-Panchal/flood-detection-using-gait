@@ -11,9 +11,9 @@ import pandas as pd
 import numpy as np
 from scipy.fftpack import rfft
 import csv
-
+import sys
 #%%
-df = pd.read_csv("C:\Honey\projects\Research gait\Flood Detection\data\Rec interval\Rec interval _ 0.1 data\Transformed\\merged_processed_new_interval.csv")
+df = pd.read_csv("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval _ 0.1 data\\Transformed\\merged_processed_new_interval_JAN19.csv")
 #print(list(df))
 
 #%%
@@ -107,6 +107,9 @@ def slice_by_classes(X,y, window = 10):
     classes = set(y)
     print("Length of dataset is - :" +  str(len(y)))
 
+    print(classes)
+    #sys.exit(0)
+
     sliced_data = np.array([])
     windowed_data = np.array([])
     i = 0
@@ -175,7 +178,7 @@ print(data)
 
 #%%
 #writing it in a new file
-out_csv = open("C:\Honey\projects\Research gait\Flood Detection\data\Rec interval\Rec interval _ 0.1 data\windowed\\Spec_window_50_stride_25.csv", "w", newline="")
+out_csv = open("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval _ 0.1 data\\windowed\\Spec_window_50_stride_25_JAN19.csv", "w", newline="")
 with out_csv:
     writer = csv.writer(out_csv)
     writer.writerows(data)

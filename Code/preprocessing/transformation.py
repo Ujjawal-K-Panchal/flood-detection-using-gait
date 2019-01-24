@@ -16,6 +16,7 @@ import numpy as np
 import csv
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+import sys
 
 import re
 
@@ -92,6 +93,7 @@ def rotation_transform(dataset):
 
     
     orientation = dataset.iloc[:,16:19].values
+    print(type(orientation[0,0]))
 
     tr_accel = np.zeros((len(orientation),3))
 
@@ -106,7 +108,9 @@ def rotation_transform(dataset):
 
 
 #%%
-df = pd.read_csv("C:\\Honey\\projects\\Research gait\\Flood Detection\\data\\Rec interval\\Rec interval _ 0.1 data\\RAW\\4 and half feet raw\\4_5_feet.csv")
+
+df = pd.read_csv("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval _ 0.1 data\\RAW\\Merged\\Merged-all-rec0_1-JAN19_reduced.csv", header = 0)
+print(df.dtypes)
 #reading the csv file, enter the path here
 #%%
 #cleaning the dataset by removing uncessary columns
@@ -137,7 +141,7 @@ print(data)
 
 #%%
 #writing it in a new file
-out_csv = open("C:\\Honey\\projects\\Research gait\\Flood Detection\\data\\Rec interval\\Rec interval _ 0.1 data\\Transformed\\4_5_processed_new_interval.csv", "w", newline="")
+out_csv = open("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval\\Rec interval _ 0.1 data\\Transformed\\merged_processed_new_interval_JAN19.csv", "w", newline="")
 with out_csv:
     writer = csv.writer(out_csv)
     writer.writerows(data)
