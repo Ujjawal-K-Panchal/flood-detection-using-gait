@@ -22,7 +22,7 @@ import re
 
 #%%
 #reading the dataset
-df = pd.read_csv("C:\Honey\projects\Research gait\Flood Detection\data\Rec interval\Rec interval _ 0.1 data\windowed\Spec_window_50_stride_25.csv")
+df = pd.read_csv("C:\Honey\projects\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\data\Rec interval _ 0.1 data\RAW\Merged\Merged-all-rec0_1-JAN19_reduced.csv")
 df = df.dropna(axis=1)
 #print(df.columns.values)
 
