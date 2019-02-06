@@ -1,0 +1,1 @@
+This folder contains drafts for papers and paper templates for various conferences as implied by their names.
