@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
-
-This is a temporary script file.
+Title : generating plot of windowed data single variables vs index (time).
+Author : Ujjawal.K.Panchal
 
 """
 
