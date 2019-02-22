@@ -10,7 +10,7 @@ FLOOD DETECTION using GAIT ANALYSIS
     < to be written after completion of paper>
 
 
-NOTE:- delete comments after completing them
+NOTE:- delete #comments after completing them
 [+] Repo Information:-
 
     1. RAW data from mobile sensors is available at data/raw/raw_data_reduced.csv  
@@ -30,5 +30,5 @@ NOTE:- delete comments after completing them
     6.  Models are available in code/models
 
     5.  Old contains the old folders and unused files.
-    
+
     6.  Saad contains Saad sir's scripts.

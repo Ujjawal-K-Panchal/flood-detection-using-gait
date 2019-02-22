@@ -17,6 +17,7 @@ import csv
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 import sys
+import os.path
 
 import re
 
@@ -109,8 +110,9 @@ def rotation_transform(dataset):
 
 #%%
 
-df = pd.read_csv("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval _ 0.1 data\\RAW\\Merged\\Merged-all-rec0_1-JAN19_reduced.csv", header = 0)
-print(df.dtypes)
+#df = pd.read_csv("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval _ 0.1 data\\RAW\\Merged\\Merged-all-rec0_1-JAN19_reduced.csv", header = 0)
+df = pd.read_csv(os.path.join("data", "raw", "raw_data_reduced.csv"), header = 0)
+
 #reading the csv file, enter the path here
 #%%
 #cleaning the dataset by removing uncessary columns
