@@ -12,9 +12,9 @@ import csv
 import pickle
 import os
 
-os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\data\Rec interval _ 0.1 data\windowed')
-dataset  = pd.read_csv('Spec_window_50_stride_25_JAN19.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
-os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\Code\Models\Random Forest Classifier\Modelling Script')
+os.chdir(r'..\..\..\..\data\windowed')
+dataset  = pd.read_csv('window_50_stride_25.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+os.chdir(r'..\..\Code\Models\Random Forest Classifier\Modelling Script')
 
 #Removing some unwanted features.
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
@@ -38,6 +38,12 @@ for i in range(len(Y)):
         CLR[i] = 'd'
 
 Y = CLR
+
+#PCA
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components = 60)
+X = pca.fit_transform(X)
 
 '''
 train_test_dev
@@ -92,11 +98,21 @@ print(clf_random.best_params_)
 #os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\Code\Models\Random Forest Classifier\Post Jan-19')
 #clf = pickle.load(open('rfc-92_47_100-trees.sav', 'rb'))
 #os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\Code\Models\Random Forest Classifier\Modelling Script')
-
+'''
+clf = RandomForestClassifier(n_estimators= 500, min_samples_split= 2, 
+                             min_samples_leaf= 1, max_features= 'sqrt', max_depth= 15, 
+                             criterion= 'entropy', bootstrap= False, random_state = 0)
+'''
 clf = RandomForestClassifier(n_estimators= 500, min_samples_split= 2, 
                              min_samples_leaf= 1, max_features= 'sqrt', max_depth= 15, 
                              criterion= 'entropy', bootstrap= False, random_state = 0)
 
+"""
+#Pre loaded Model.
+os.chdir('../Post Jan-19')
+clf = pickle.load(open('rfc-92_47_100-trees-60-Features.sav', 'rb'))
+os.chdir('../Modelling Script')
+"""
 #10 Cross validation
 '''
 from sklearn.model_selection import KFold, cross_val_score
@@ -113,8 +129,12 @@ print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
 
 """
 Model Spec : 
+#List of Accuracies of 10-Cross-Validation : (With PCA)
+#[0.94835681 0.89201878 0.91549296 0.95305164 0.91509434 0.91509434 0.91037736 0.91037736 0.95283019 0.90566038]
+#10-Cross-Validation-Accuracy mean : 0.9218
+
     
-#List of Accuracies of 10-Cross-Validation :
+#List of Accuracies of 10-Cross-Validation : (Without PCA)
 #[0.92957746 0.91079812 0.92488263 0.94835681 0.93396226 0.93867925 0.9245283  0.89622642 0.93396226 0.90566038]
 #10-Cross-Validation-Accuracy mean : 0.9247
 
@@ -161,6 +181,7 @@ print('Precision : ', precision_score(Y_dev,Y_pred, average = 'macro'))
 print('Recall : ', recall_score(Y_dev, Y_pred, average = 'macro'))
 '''
 
+'''
 #Feature Importance
 clf.fit(X,Y)
 feature_list = dataset.columns
@@ -173,7 +194,7 @@ feature_importances = sorted(feature_importances, key = lambda x: x[1], reverse 
 
 for (i,(name,imp)) in enumerate(feature_importances):
     print(i+1,name,"imp :",imp)
-
+'''
 
 '''
 #Test Prediction

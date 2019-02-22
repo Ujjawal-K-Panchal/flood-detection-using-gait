@@ -11,9 +11,11 @@ import pickle
 import os
 
 #Importing dataset.
-os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\data\Rec interval _ 0.1 data\windowed')
-dataset  = pd.read_csv('Spec_window_50_stride_25_JAN19.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
-os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\Code\Models\Support Vector Machines')
+
+os.chdir(r'..\..\..\data\windowed')
+dataset  = pd.read_csv('window_50_stride_25.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+os.chdir(r'..\..\Code\Models\Support Vector Machines')
+
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('std_dev')], axis = 1)#input *std_dev for removing substring with std_dev
 X = dataset.iloc[:,:-1]
@@ -33,16 +35,25 @@ for i in range(len(Y)):
         CLR[i] = 'd'
 
 Y = CLR
-
-
 #Standard Scaling the data.
 from sklearn.preprocessing import StandardScaler as SS
 ss = SS()
 X = ss.fit_transform(X)
 
+'''
 #Fitting the PCA algorithm with our Data
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+
+#Getting Orthogonal Components.
+pca = PCA(n_components = 60) 
+X = pca.fit_transform(X)
+print(len(feature_names))
+print(pca.components_.shape)
+'''
+
+
+
 
 """
 pca = PCA().fit(X)
@@ -52,12 +63,9 @@ plt.plot(np.cumsum(pca.explained_variance_ratio_))
 plt.xlabel('Number of Components')
 plt.ylabel('Variance (%)') #for each component
 plt.show()
-"""
 #The minimum number of components to keep variance of 99% variance is 46.
-pca = PCA(n_components = 46)
-X = pca.fit_transform(X)
-print(len(feature_names))
-print(pca.components_.shape)
+
+"""
 '''
 importance_dict = dict()
 components = pca.components_.T # Now each row contains different features, and each column, their information in transformed components. 
@@ -65,8 +73,8 @@ for i in range(len(feature_names)):
     importance_dict[ feature_names[i] ] = components[i]
 '''
 #writing importance of features in a file.
-df = pd.DataFrame(pca.components_,columns = feature_names)
-df.to_csv('PCA_feature_variances_46-components.csv')
+#df = pd.DataFrame(pca.components_,columns = feature_names)
+#df.to_csv('PCA_feature_variances_46-components.csv')
 #train_test splitting for analysis of optimal number of parameters.
 from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.2, random_state = 0)
@@ -90,7 +98,8 @@ print(grid_search.best_params_)
 """
 #modelling.
 #model PARAMETERS = SVC(C = 3, gamma = 0.1, kernel = 'rbf') #will be chosen from pickle. 
-from sklearn.metrics import accuracy_score # we will use accuracy score for scoring.
+# With PCA : {'C': 3, 'gamma': 0.03, 'kernel': 'rbf'}
+#from sklearn.metrics import accuracy_score # we will use accuracy score for scoring.
 
 """
 #evaluating performance for selection of feature selection calculation.
@@ -124,9 +133,10 @@ print('The best accuracy is',max_x,' which is received on selecting',max_i,'attr
 #X = sel.transform(X)
 """
 #Now, we train and test our model on the training, cross validation and test sets.
-model = pickle.load(open('SVC_92_04_46-attribs-PCAd.sav','rb'))
+#model = pickle.load(open('SVC_92_04_46-attribs-PCAd.sav','rb'))
 #pickle.dump(model, open('SVC_92_04_46-attribs-PCAd.sav','wb'))
-
+model = SVC(C = 3, gamma = 0.03, kernel = 'rbf')
+'''
 #cross val accuracy.
 Y_cv_pred = model.predict(X_cv)
 print('Cross validation set accuracy = ',accuracy_score(Y_cv,Y_cv_pred))
@@ -134,6 +144,7 @@ print('Cross validation set accuracy = ',accuracy_score(Y_cv,Y_cv_pred))
 Y_test_pred = model.predict(X_test)
 print('Test set accuracy = ',accuracy_score(Y_test,Y_test_pred))
 print('\n')
+'''
 #10 Cross validation
 
 from sklearn.model_selection import KFold, cross_val_score
