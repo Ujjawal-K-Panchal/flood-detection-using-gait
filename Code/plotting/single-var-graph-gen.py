@@ -4,6 +4,21 @@ Title : generating plot of windowed data single variables vs index (time).
 Author : Ujjawal.K.Panchal
 
 """
+#importing libraries.
+import pandas as pd
+import os
+
+#importing dataset.
+
+os.chdir(r'..\..\..\data\windowed')
+dataset  = pd.read_csv('window_50_stride_25.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+os.chdir(r'..\..\Code\Models\Support Vector Machines')
+
+dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
+dataset = dataset.drop([col for col in dataset.columns if  not col.find('std_dev')], axis = 1)#input *std_dev for removing substring with std_dev
+X = dataset.iloc[:,:-1]
+Y = dataset.iloc[:,-1]
+feature_names = list(X.columns)
 
 os.chdir(r'..\..\Plots\Single Attribute Plots')
 for feature in range(0,len(feature_names )):
