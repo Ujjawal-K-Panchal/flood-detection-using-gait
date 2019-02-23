@@ -9,11 +9,12 @@
 #%%
 import pandas as pd
 import numpy as np
+import os
 from scipy.fftpack import rfft
 import csv
 import sys
 #%%
-df = pd.read_csv("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval _ 0.1 data\\Transformed\\merged_processed_new_interval_JAN19.csv")
+df = pd.read_csv(os.path.join("data", "transformed", "transformed_data.csv"))
 #print(list(df))
 
 #%%
@@ -178,7 +179,7 @@ print(data)
 
 #%%
 #writing it in a new file
-out_csv = open("C:\\Honey\\projects\\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\\data\\Rec interval _ 0.1 data\\windowed\\Spec_window_50_stride_25_JAN19.csv", "w", newline="")
+out_csv = open(os.path.join("data", "windowed", "window_50_stride_25_data.csv"), "w", newline="")
 with out_csv:
     writer = csv.writer(out_csv)
     writer.writerows(data)

@@ -28,22 +28,23 @@ def slice_by_class(dataset, depth_classes):
 
 def plot_graph(sliced_data, depth_classes, column_names):
 
-    for i in range(len(column_names) - 1):
+    #for i in range(len(column_names) - 1):
         for j in range(len(column_names) - 1):
-            if i == j: continue
+            #if i == j: continue
             for c in depth_classes:
                 #if c != 0.19:
-                    #plt.plot(range(100), sliced_data[c][:100,j], color = color[c], label = str(c))
-                    plt.plot(sliced_data[c][:100,i], sliced_data[c][:100,j], color = color[c], label = str(c))
+                    plt.plot(range(100), sliced_data[c][:100,j], color = color[c], label = str(c))
+                    #plt.plot(sliced_data[c][:100,i], sliced_data[c][:100,j], color = color[c], label = str(c))
             plt.xlabel("First Hundred Points")
             plt.ylabel(column_names[j])
             plt.title(("First Hundred points of " + column_names[j]))
             plt.legend()
             plt.rcParams["figure.figsize"] = [15.5, 8.0]
-            path = os.path.join("plots", "one feature plots (first 100)", column_names[j])
+            path = os.path.join("plots", "one feature plots (first 100 points)", column_names[j])
 
+            plt.show()
             plt.savefig((path + '.png'), bbox_inches='tight')
-            #plt.show()
+            
 
 
 
@@ -56,7 +57,7 @@ def plot_graph(sliced_data, depth_classes, column_names):
 
 
 
-df = pd.read_csv(os.path.join("data", "windowed", "window_50_stride_25.csv"))
+df = pd.read_csv(os.path.join("data", "windowed", "window_50_stride_25_data.csv"))
 # it only executes when script run from the main folder
 
 column_names = list(df)
