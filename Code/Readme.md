@@ -2,3 +2,4 @@
 2. Models contains models in their respective folders.
 3. preprocessing contains transformation.py which has PRT in it.
 4. window analysis contains strided_windowed_data generating script.
+5. plotting folder contains files used for generating plots.
