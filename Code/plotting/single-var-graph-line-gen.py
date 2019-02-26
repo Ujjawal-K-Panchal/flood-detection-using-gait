@@ -34,7 +34,7 @@ for i in range(len(Y)):
 Y = CLR
 X = X.iloc[:,:].values
 #plotting.
-os.chdir(r'..\..\Plots\one feature plots (first 100 points)')
+os.chdir(r'..\..\Plots\one feature scatter plots')
 for feature in range(0,len(feature_names )):
     line_0 = [X[i,feature] for i in range(0,len(X)) if Y[i] == 'a']
     line_0_19 = [X[i,feature] for i in range(0,len(X)) if Y[i] == 'b']
