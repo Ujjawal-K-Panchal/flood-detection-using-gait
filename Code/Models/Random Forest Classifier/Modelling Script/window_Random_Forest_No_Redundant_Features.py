@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Creattion data :  Thu Sep 13 12:10:39 2018
-Latest Update : Fr Jan 25 01:43:40 2019
+Creation data :  Thu Sep 13 12:10:39 2018
+Latest Update : Mo Feb 26 11:39:40 2019
 @author: Ujjawal.K.Panchal
 Note! Please use Merged_Window.csv with me.
 """
@@ -13,7 +13,7 @@ import pickle
 import os
 
 os.chdir(r'..\..\..\..\data\windowed')
-dataset  = pd.read_csv('window_50_stride_25.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
 os.chdir(r'..\..\Code\Models\Random Forest Classifier\Modelling Script')
 
 #Removing some unwanted features.
@@ -38,13 +38,13 @@ for i in range(len(Y)):
         CLR[i] = 'd'
 
 Y = CLR
-
+'''
 #PCA
 from sklearn.decomposition import PCA
 
 pca = PCA(n_components = 60)
 X = pca.fit_transform(X)
-
+'''
 '''
 train_test_dev
 from sklearn.model_selection import train_test_split
@@ -103,18 +103,21 @@ clf = RandomForestClassifier(n_estimators= 500, min_samples_split= 2,
                              min_samples_leaf= 1, max_features= 'sqrt', max_depth= 15, 
                              criterion= 'entropy', bootstrap= False, random_state = 0)
 '''
+
+#Modelling.
+'''
+from sklearn.ensemble import RandomForestClassifier
 clf = RandomForestClassifier(n_estimators= 500, min_samples_split= 2, 
                              min_samples_leaf= 1, max_features= 'sqrt', max_depth= 15, 
                              criterion= 'entropy', bootstrap= False, random_state = 0)
+'''
 
-"""
 #Pre loaded Model.
 os.chdir('../Post Jan-19')
-clf = pickle.load(open('rfc-92_47_100-trees-60-Features.sav', 'rb'))
+clf = pickle.load(open('rfc-96-68_500-trees-60-Features-NO-PCA(1).sav', 'rb'))
 os.chdir('../Modelling Script')
-"""
 #10 Cross validation
-'''
+
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 k_fold = KFold(n_splits=10, shuffle=True, random_state=0)
@@ -125,7 +128,7 @@ l1 = cross_val_score(clf, X, Y, cv=k_fold, n_jobs=1)
 print('List of Accuracies of 10-Cross-Validation :\n'+str(l1))
 print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
 
-'''
+
 
 """
 Model Spec : 

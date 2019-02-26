@@ -13,7 +13,7 @@ import os
 #Importing dataset.
 
 os.chdir(r'..\..\..\data\windowed')
-dataset  = pd.read_csv('window_50_stride_25.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
 os.chdir(r'..\..\Code\Models\Support Vector Machines')
 
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
@@ -72,6 +72,7 @@ components = pca.components_.T # Now each row contains different features, and e
 for i in range(len(feature_names)):
     importance_dict[ feature_names[i] ] = components[i]
 '''
+'''
 #writing importance of features in a file.
 #df = pd.DataFrame(pca.components_,columns = feature_names)
 #df.to_csv('PCA_feature_variances_46-components.csv')
@@ -79,7 +80,7 @@ for i in range(len(feature_names)):
 from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.2, random_state = 0)
 X_cv, X_test, Y_cv, Y_test =train_test_split(X_test, Y_test, test_size = 0.5, random_state = 0)
-
+'''
 #Modelling
 
 #hyper parameter tuning.
@@ -133,9 +134,14 @@ print('The best accuracy is',max_x,' which is received on selecting',max_i,'attr
 #X = sel.transform(X)
 """
 #Now, we train and test our model on the training, cross validation and test sets.
-#model = pickle.load(open('SVC_92_04_46-attribs-PCAd.sav','rb'))
-#pickle.dump(model, open('SVC_92_04_46-attribs-PCAd.sav','wb'))
+'''
 model = SVC(C = 3, gamma = 0.03, kernel = 'rbf')
+pickle.dump(model, open('SVM-Model-No-PCA.sav' , 'wb'))
+'''
+
+#Load pre-trained model.
+model = pickle.load(open('SVM-Model-No-PCA.sav' , 'rb'))
+
 '''
 #cross val accuracy.
 Y_cv_pred = model.predict(X_cv)
