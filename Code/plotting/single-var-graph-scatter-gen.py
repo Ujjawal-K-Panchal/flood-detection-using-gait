@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 os.chdir(r'..\..\data\windowed')
 dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
-
+dataset = dataset.sample(frac = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('std_dev')], axis = 1)#input *std_dev for removing substring with std_dev
 X = dataset.iloc[:,:-1]
@@ -34,7 +34,7 @@ for i in range(len(Y)):
 Y = CLR
 X = X.iloc[:,:].values
 #plotting.
-os.chdir(r'..\..\Plots\one feature scatter plots')
+os.chdir(r'..\..\Plots\one feature random scatter plots')
 for feature in range(0,len(feature_names )):
     line_0 = [X[i,feature] for i in range(0,len(X)) if Y[i] == 'a']
     line_0_19 = [X[i,feature] for i in range(0,len(X)) if Y[i] == 'b']
@@ -45,7 +45,7 @@ for feature in range(0,len(feature_names )):
     plt.scatter([i for i in range(100)], line_2_5[:100], color = 'blue', label = '2.5 feet')
     plt.scatter([i for i in range(100)], line_4_5[:100], color = 'red', label = '4.5 feet')
     plt.legend()
-    plt.xlabel('Time')
+    plt.xlabel('Random Index')
     plt.ylabel(feature_names[feature])
     plt.savefig(feature_names[feature]+'vsTime.png')
     plt.show()
