@@ -12,10 +12,9 @@ import os
 
 #Importing dataset.
 
-#os.chdir(r'..\..\..\data\windowed')
-dataset  = pd.read_csv(os.path.join('data','windowed','window_50_stride_25_data.csv'))
-#dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
-#os.chdir(r'..\..\Code\Models\Support Vector Machines')
+os.chdir(r'..\..\..\data\windowed')
+dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+os.chdir(r'..\..\Code\Models\Support Vector Machines')
 
 #Removing some unwanted features.
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
@@ -212,7 +211,7 @@ for plane in range(len(coeffs[:,0])):
     sorted_feature_names = sorted(coeff_dict , key = coeff_dict.get)
     
     for name in sorted_feature_names:
-        sorted_per_plane.append([name, coeff_dict_mean[name]])
+        sorted_per_plane.append([name, coeff_dict[name]])
     sorted_per_plane.reverse()
 
     sorted_for_each_plane[plane] = sorted_per_plane
