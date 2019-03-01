@@ -91,7 +91,7 @@ from sklearn.model_selection import GridSearchCV
 
 Cs = [ 0.01, 0.03, 0.1, 0.3, 1, 3]
 gammas = [0.01,0.03, 0.1 , 0.3, 1,3]
-kernels = ['rbf','poly', 'linear']
+kernels = ['linear']
 param_grid = {'C': Cs, 'gamma' : gammas, 'kernel' : kernels}
 grid_search = GridSearchCV(SVC(), param_grid, cv=3, verbose = 10, n_jobs = 4)
 grid_search.fit(X_train, Y_train)
@@ -140,8 +140,12 @@ pickle.dump(model, open('SVM-Model-No-PCA.sav' , 'wb'))
 '''
 
 #Load pre-trained model.
-model = pickle.load(open('SVM-Model-No-PCA.sav' , 'rb'))
+'''
+model = pickle.load(open('SVM-Model-No-PCA(1).sav' , 'rb'))
+'''
 
+model = SVC(C = 3, gamma = 0.01, kernel = 'linear')
+model.fit(X_train, Y_train)
 '''
 #cross val accuracy.
 Y_cv_pred = model.predict(X_cv)
@@ -164,5 +168,25 @@ print('List of Accuracies of 10-Cross-Validation :\n'+str(l1))
 print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
 
 
+#finding feature weights and sorting by mean and median.
 
+coeffs = model.coef_
+coeff_dict_mean = dict()
+coeff_dict_median = dict()
+
+for i in range(len(feature_names)):
+    coeff_dict_mean[feature_names[i]] = np.abs(np.mean(coeffs[:,i]))
+    coeff_dict_mean[feature_names[i]] = np.abs(np.median(coeffs[:,i]))
     
+sorted_feature_names = sorted(coeff_dict_mean , key = coeff_dict_mean.get)
+
+sorted_by_mean = list()
+for name in sorted_feature_names:
+    sorted_by_mean.append([name, coeff_dict_mean[name]])
+sorted_by_mean.reverse()
+
+sorted_by_median = list()
+sorted_feature_names = sorted(coeff_dict_median , key = coeff_dict_median.get)
+for name in sorted_feature_names:
+    sorted_by_median.append([name, coeff_dict_median[name]])
+sorted_by_median.reverse()
