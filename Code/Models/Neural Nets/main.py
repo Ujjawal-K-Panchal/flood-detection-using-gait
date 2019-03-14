@@ -18,11 +18,12 @@ from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier,KerasRegressor
 from keras.utils import np_utils
 import re
+import os
 
 
 #%%
 #reading the dataset
-df = pd.read_csv("C:\Honey\projects\Research gait\\Flood Detection using Gait\\flood-detection-using-gait\data\Rec interval _ 0.1 data\RAW\Merged\Merged-all-rec0_1-JAN19_reduced.csv")
+df = pd.read_csv(os.path.join("data", "windowed", "window_50_stride_25_data.csv"))
 df = df.dropna(axis=1)
 #print(df.columns.values)
 
@@ -145,7 +146,7 @@ results = model_selection.cross_val_score(estimator, X_scaled, dummy_y, cv=kfold
 print("Larger: %.2f (%.2f) MSE" % (results.mean(), results.std()))
 """
 
-estimator = KerasClassifier(build_fn=larger_model, epochs=50, batch_size=100,verbose=1)
+estimator = KerasClassifier(build_fn=larger_model, epochs=50, batch_size=16,verbose=1)
 kfold = KFold(n_splits=15, shuffle=True, random_state=seed)
 results = model_selection.cross_val_score(estimator, X_norm , dummy_y, cv=kfold)
 print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
