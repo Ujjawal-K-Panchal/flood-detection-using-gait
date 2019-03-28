@@ -31,7 +31,7 @@ Floods are natural disasters common to places located near shores or which recei
 
 \begin{IEEEkeywords}
 gait, data analysis, machine learning, floods
-\end{IEEEkeywords}
+\end{IEEEkeywords}+++
 
 \section{Introduction}
 %Motivation.
@@ -54,6 +54,15 @@ Using sensors such as Accelerometer, Gyroscope, Proximity Sensor, Gravitational 
 This paper aims to analyze the waterlogged surroundings using general sensors which are very commonly present on smartphones which are generally easily available during situations of waterlogging and flood.  
 %Organization of the paper 
 The following sections of this paper are organized as follows; Section 2 is on data source and describes how the data was collected and what tools and measures were chosen for collection of data. Section 3 deals with preprocessing of the collected data, section 4 with analysis techniques used; section 5 describes the results obtained, Section 6 gives probable directions for promising work in future and Section 7 gives a brief conclusion to the paper.%<other section names and their brief description.> 
+
+\section{Collecting Data and Creation of Raw Dataset}
+For the experimentation, a new dataset was generated thanks to the help of volunteers, who with their own consent to help our research, walked on land and several pools filled to different levels. Data is the readings of various common sensors available in most of the smartphones. These sensors in include accelerometer, gyroscope, magnetometer<review, add more> etc. It was collected using the mobile application AndroSensor by Asim, 2015.[4] Collection of quality data for the experiment was the most challenging part and was done in various pools with various depths with help from many volunteers. To collect the data, volunteers were made to walk in various depths. To maintain the simplicity of this work it was made sure that the android device was held in a common position for all the cases, i.e. in hand in front of the chest ( refer image <to be added>). The classes of depths chosen for this experiment are 4.5 feet, 2.5 feet, 0.19 feet and 0 feet respectively. The application software[4] has been a very useful tool for completing this project. It accommodates adjusting of frequencies for recording and updating intervals. Configurations for the experiment are described as follows. Data was collected at a recording rate of 10 Hz (recording 10 readings in an interval of 1 second). The updating interval was set to very fast. 
+
+After the above was done, all recordings belonging to a specific classes described above, are aggregated and put into a single file. These files are labelled with their classes as '0' for 0 feet, '0.19' for 0.19 feet, '2.5' for 2.5 feet and '4.5' for 4.5 feet. These aggregated and labelled files are again merged into one single file which encompasses the entire raw dataset.
+
+\section{Preprocessing the Data}
+\subsection{Rotational Transformation}
+
 
 
 \section{Ease of Use}
