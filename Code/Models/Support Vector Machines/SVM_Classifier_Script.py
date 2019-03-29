@@ -12,9 +12,9 @@ import os
 
 #Importing dataset.
 
-#os.chdir(r'..\..\..\data\windowed')
-dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data.csv'))# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
-#os.chdir(r'..\..\Code\Models\Support Vector Machines')
+os.chdir(r'..\..\..\data\windowed')
+dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+os.chdir(r'..\..\Code\Models\Support Vector Machines')
 
 #Removing some unwanted features.
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
@@ -171,6 +171,19 @@ l1 = cross_val_score(model, X, Y, cv=k_fold, n_jobs=1)
 
 print('List of Accuracies of 10-Cross-Validation :\n'+str(l1))
 print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
+
+#Other evaluation metrics.
+
+#confusion matrix.
+print(pd.crosstab(np.array(Y_test),np.array(model.predict(X_test)) ,  margins = True))
+
+#Precision & Recall
+from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import recall_score, precision_score
+
+print('Precision of the model : ', precision_score(Y_test, model.predict(X_test), average = 'micro'))
+print('Recall of the model : ',recall_score(Y_test, model.predict(X_test), average = 'micro') )
+print('F1 Score of the model : ', f1_score(Y_test, clf.predict(X_test), average = 'micro'))
 
 
 #finding feature weights and sorting by mean and median.

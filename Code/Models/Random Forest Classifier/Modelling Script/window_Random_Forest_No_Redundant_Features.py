@@ -45,13 +45,12 @@ from sklearn.decomposition import PCA
 pca = PCA(n_components = 60)
 X = pca.fit_transform(X)
 '''
-'''
-train_test_dev
+
+#train_test_dev
 from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=1)#Don't change random state for keeping standardized.
 
 X_train, X_dev, Y_train, Y_dev = train_test_split(X_train, Y_train, test_size=0.2, random_state=1)
-'''
 """
 #Hyperparameter tuning for Random Forest
 
@@ -91,8 +90,10 @@ from sklearn.model_selection import RandomizedSearchCV
 clf_random = RandomizedSearchCV(estimator = RandomForestClassifier(n_jobs  = -1), 
                                 param_distributions = random_grid, 
                                 n_iter = 100, cv = 3, verbose=10, random_state=42, n_jobs = 1) 
-clf_random.fit(X_train,Y_train)
+clf_random.fit(X_dev,Y_dev)
 print(clf_random.best_params_)
+
+clf2 = RandomForestClassifier(n_estimators = 100, criterion = 'gini', min_samples_split = 2, min_samples_leaf = 1, max_features = 'log2', max_depth = 15, bootstrap = True)
 """
 #model
 #os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\Code\Models\Random Forest Classifier\Post Jan-19')
@@ -118,18 +119,30 @@ clf = pickle.load(open('rfc-96-68_500-trees-60-Features-NO-PCA(1).sav', 'rb'))
 os.chdir('../Modelling Script')
 #10 Cross validation
 
-from sklearn.model_selection import KFold, cross_val_score
+from sklearn.model_selection import KFold, cross_val_score, LeaveOneOut
 from sklearn.ensemble import RandomForestClassifier
 k_fold = KFold(n_splits=10, shuffle=True, random_state=0)
 
-l1 = cross_val_score(clf, X, Y, cv=k_fold, n_jobs=1)
+l1 = cross_val_score(clf, X, Y, cv=k_fold, n_jobs=-1)
 
 
 print('List of Accuracies of 10-Cross-Validation :\n'+str(l1))
 print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
 
+clf.fit(X_train, Y_train)
 
+#Other evaluation metrics.
 
+#confusion matrix.
+print(pd.crosstab(np.array(Y_test),np.array(clf.predict(X_test)) ,  margins = True))
+
+#Precision & Recall
+from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import recall_score, precision_score, f1_score
+
+print('Precision of the model : ', precision_score(Y_test, clf.predict(X_test), average = 'micro'))
+print('Recall of the model : ',recall_score(Y_test, clf.predict(X_test), average = 'micro') )
+print('F1 Score of the model : ', f1_score(Y_test, clf.predict(X_test), average = 'micro'))
 """
 Model Spec : 
 #List of Accuracies of 10-Cross-Validation : (With PCA)
