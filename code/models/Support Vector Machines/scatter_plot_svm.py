@@ -1,9 +1,11 @@
-from SVM_Classifier_Script import sorted_for_each_plane, X, Y, feature_names
+from SVM_0ftVS0_19ft import sorted_for_each_plane, X, Y, feature_names
 import matplotlib.pyplot as plt
 import sys
 import random
 import numpy as np
 import os
+from pylab import rcParams
+#rcParams['figure.figsize'] = 3.1,2.2
 
 feature_indices = []
 top_features = []
@@ -27,12 +29,12 @@ for plane in sorted_for_each_plane.keys():
 
     
     
-    plt.scatter(class_1_feature_0, class_1_feature_1, color = class_wise_color[plane_wise_class[plane][0]], label = class_depth[plane_wise_class[plane][0]])
-    plt.scatter(class_2_feature_0, class_2_feature_1, color = class_wise_color[plane_wise_class[plane][1]], label = class_depth[plane_wise_class[plane][1]])
+    plt.scatter(class_1_feature_0, class_1_feature_1,s = 7, color = class_wise_color[plane_wise_class[plane][0]], label = class_depth[plane_wise_class[plane][0]])
+    plt.scatter(class_2_feature_0, class_2_feature_1,s = 7, color = class_wise_color[plane_wise_class[plane][1]], label = class_depth[plane_wise_class[plane][1]])
     plt.legend()
 
-    title = "Plane_" + str(plane) + "____" + top_features[0][0]+"_vs_" + top_features[1][0]
-    path = os.path.join("plots", "two", title)
+    title = top_features[0][0]+"_vs_" + top_features[1][0]
+    path = os.path.join("plots", "two", "plot_" + str(plane))
     plt.suptitle(title)
     plt.xlabel(top_features[0][0])
     plt.ylabel(top_features[1][0])

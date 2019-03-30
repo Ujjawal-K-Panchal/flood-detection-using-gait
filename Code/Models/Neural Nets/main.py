@@ -36,7 +36,7 @@ y = df.iloc[:,-1]
 #%%
 
 X = X.drop(columns = [x for x in list(X) if re.search(r'MAG*', x)])
-print(len(list(X)))
+#print(len(list(X)))
 
 #%%
 #using scaler to scale the values
@@ -118,6 +118,48 @@ print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
 
 
 #%%
+from keras import backend as K
+precision_all = []
+recall_all = []
+f1_all = []
+	
+
+
+
+def f1(y_true, y_pred):
+	def recall(y_true, y_pred):
+		"""Recall metric.
+
+		Only computes a batch-wise average of recall.
+
+		Computes the recall, a metric for multi-label classification of
+		how many relevant items are selected.
+		"""
+		true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+		possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+		recall = true_positives / (possible_positives + K.epsilon())
+		recall_all.append(recall)
+		return recall
+
+	def precision(y_true, y_pred):
+		"""Precision metric.
+
+		Only computes a batch-wise average of precision.
+
+		Computes the precision, a metric for multi-label classification of
+		how many selected items are relevant.
+		"""
+		true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+		predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+		precision = true_positives / (predicted_positives + K.epsilon())
+		precision_all.append(precision)
+		return precision
+	precision = precision(y_true, y_pred)
+	recall = recall(y_true, y_pred)
+	f1 = 2*((precision*recall)/(precision+recall+K.epsilon()))
+	f1_all.append(f1)
+	return f1
+
 
 # define the model
 def larger_model():
@@ -128,7 +170,8 @@ def larger_model():
 	model.add(Dense(10, activation='relu'))
 	model.add(Dense(4, activation='softmax'))
 	# Compile model
-	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy',f1])
+	print(model.summary())
 	return model
 
 
@@ -149,4 +192,13 @@ print("Larger: %.2f (%.2f) MSE" % (results.mean(), results.std()))
 estimator = KerasClassifier(build_fn=larger_model, epochs=50, batch_size=16,verbose=1)
 kfold = KFold(n_splits=15, shuffle=True, random_state=seed)
 results = model_selection.cross_val_score(estimator, X_norm , dummy_y, cv=kfold)
-print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))
+#print(precision_all)
+print(precision_all)
+print(sum(precision_all)/len(precision_all)*100)
+print(recall_all)
+print(sum(recall_all)/len(recall_all)*100)
+print(f1_all)
+print(sum(f1_all)/len(f1_all)*100)
+print("Precision: %.2f%% (%.2f%%)" % ((sum(precision_all)/len(precision_all))*100))
+print("Recall: %.2f%% (%.2f%%)" % ((sum(recall_all)/len(recall_all))*100))
+print("F1: %.2f%% (%.2f%%)" % ((sum(recall_all)/len(recall_all))*100))

@@ -12,9 +12,11 @@ import os
 
 #Importing dataset.
 
-os.chdir(r'..\..\..\data\windowed')
-dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
-os.chdir(r'..\..\Code\Models\Support Vector Machines')
+#os.chdir(r'..\..\..\data\windowed')
+#dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+#os.chdir(r'..\..\Code\Models\Support Vector Machines')
+dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data.csv'))
+
 
 #Removing some unwanted features.
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
@@ -179,11 +181,11 @@ print(pd.crosstab(np.array(Y_test),np.array(model.predict(X_test)) ,  margins = 
 
 #Precision & Recall
 from sklearn.metrics import precision_recall_curve
-from sklearn.metrics import recall_score, precision_score
+from sklearn.metrics import recall_score, precision_score, f1_score
 
-print('Precision of the model : ', precision_score(Y_test, model.predict(X_test), average = 'micro'))
-print('Recall of the model : ',recall_score(Y_test, model.predict(X_test), average = 'micro') )
-print('F1 Score of the model : ', f1_score(Y_test, clf.predict(X_test), average = 'micro'))
+#print('Precision of the model : ', precision_score(Y_test, model.predict(X_test), average = 'micro'))
+#print('Recall of the model : ',recall_score(Y_test, model.predict(X_test), average = 'micro') )
+#print('F1 Score of the model : ', f1_score(Y_test, clf.predict(X_test), average = 'micro'))
 
 
 #finding feature weights and sorting by mean and median.
