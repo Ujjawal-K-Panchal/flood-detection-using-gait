@@ -19,7 +19,8 @@ from keras.wrappers.scikit_learn import KerasClassifier,KerasRegressor
 from keras.utils import np_utils
 import re
 import os
-
+import sys
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 #%%
 #reading the dataset
@@ -190,6 +191,19 @@ print("Larger: %.2f (%.2f) MSE" % (results.mean(), results.std()))
 """
 
 estimator = KerasClassifier(build_fn=larger_model, epochs=50, batch_size=16,verbose=1)
+estimator.fit(X_train, y_train)
+y_pred = estimator.predict(X_test)
+
+
+y_true = pd.Series(y_test)
+y_pr = pd.Series(y_pred)
+print(y_pred)
+print(confusion_matrix(y_test, y_pred))
+print(precision_recall_fscore_support(y_test, y_pred))
+print(pd.crosstab(y_true, y_pr, rownames=['True'], colnames=['Predicted'], margins=True))
+sys.exit(0)
+
+
 kfold = KFold(n_splits=15, shuffle=True, random_state=seed)
 results = model_selection.cross_val_score(estimator, X_norm , dummy_y, cv=kfold)
 #print(precision_all)

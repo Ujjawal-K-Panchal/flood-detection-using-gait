@@ -9,6 +9,9 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+import sys
+import np_utils 
+
 
 #Importing dataset.
 
@@ -92,6 +95,7 @@ X_cv, X_test, Y_cv, Y_test =train_test_split(X_test, Y_test, test_size = 0.5, ra
 
 #hyper parameter tuning.
 from sklearn.svm import SVC
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 """
 from sklearn.model_selection import GridSearchCV
@@ -153,6 +157,23 @@ model = pickle.load(open('SVM-Model-No-PCA(1).sav' , 'rb'))
 
 model = SVC(C = 3, gamma = 0.01, kernel = 'linear')
 model.fit(X_train, Y_train)
+
+y_pred = model.predict(X_test)
+num_classes = 4
+
+# from lable to categorial
+#y_prediction =  y_pred.argmax(1) 
+#y_categorial = np_utils.to_categorical(y_prediction, num_classes)
+y_true = pd.Series(Y_test)
+y_pr = pd.Series(y_pred)
+print(y_pred)
+print(confusion_matrix(Y_test, y_pred))
+print(precision_recall_fscore_support(Y_test, y_pred))
+print(pd.crosstab(y_true, y_pr, rownames=['True'], colnames=['Predicted'], margins=True))
+#sys.exit(0)
+#print(y_prediction)
+# from categorial to lable indexing
+#y_pred = y_categorial.argmax(1)
 '''
 #cross val accuracy.
 Y_cv_pred = model.predict(X_cv)

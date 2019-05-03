@@ -10,6 +10,9 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+import sys
+import np_utils 
+
 
 #Importing dataset.
 
@@ -80,6 +83,19 @@ print(grid_search.best_params_)
 """
 model = SVC(C = 0.3, gamma = 0.01, kernel = 'linear')
 model.fit(X_train, Y_train)
+
+y_pred = model.predict(X_test)
+num_classes = 4
+
+# from lable to categorial
+#y_prediction =  y_pred.argmax(1) 
+#y_categorial = np_utils.to_categorical(y_prediction, num_classes)
+print(y_pred)
+y_categorial
+sys.exit(0)
+print(y_prediction)
+# from categorial to lable indexing
+y_pred = y_categorial.argmax(1)
     
 #10 Cross validation
 

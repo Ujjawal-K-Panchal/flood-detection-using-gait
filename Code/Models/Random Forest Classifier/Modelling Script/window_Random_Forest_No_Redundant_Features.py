@@ -11,6 +11,9 @@ import numpy as np
 import csv
 import pickle
 import os
+import sys
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
+
 
 os.chdir(r'..\..\..\..\data\windowed')
 dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
@@ -123,13 +126,30 @@ from sklearn.model_selection import KFold, cross_val_score, LeaveOneOut
 from sklearn.ensemble import RandomForestClassifier
 k_fold = KFold(n_splits=10, shuffle=True, random_state=0)
 
-l1 = cross_val_score(clf, X, Y, cv=k_fold, n_jobs=-1)
+l1 = cross_val_score(clf, X, Y, cv=k_fold, n_jobs=1)
 
 
 print('List of Accuracies of 10-Cross-Validation :\n'+str(l1))
 print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
 
 clf.fit(X_train, Y_train)
+
+##edit 29/4/19 class wise precision, recall and F1 score
+y_pred = clf.predict(X_test)
+
+
+
+y_true = pd.Series(Y_test)
+y_pr = pd.Series(y_pred)
+print(y_pred)
+print(confusion_matrix(Y_test, y_pred))
+print(precision_recall_fscore_support(Y_test, y_pred))
+print(pd.crosstab(y_true, y_pr, rownames=['True'], colnames=['Predicted'], margins=True))
+sys.exit(0)
+
+
+##remove sys.exit
+
 
 #Other evaluation metrics.
 
@@ -143,7 +163,7 @@ from sklearn.metrics import recall_score, precision_score, f1_score
 print('Precision of the model : ', precision_score(Y_test, clf.predict(X_test), average = 'micro'))
 print('Recall of the model : ',recall_score(Y_test, clf.predict(X_test), average = 'micro') )
 print('F1 Score of the model : ', f1_score(Y_test, clf.predict(X_test), average = 'micro'))
-"""
+'''
 Model Spec : 
 #List of Accuracies of 10-Cross-Validation : (With PCA)
 #[0.94835681 0.89201878 0.91549296 0.95305164 0.91509434 0.91509434 0.91037736 0.91037736 0.95283019 0.90566038]
@@ -154,10 +174,7 @@ Model Spec :
 #[0.92957746 0.91079812 0.92488263 0.94835681 0.93396226 0.93867925 0.9245283  0.89622642 0.93396226 0.90566038]
 #10-Cross-Validation-Accuracy mean : 0.9247
 
-os.chdir(r'C:\Users\uchih\flood-detection-using-gait\Code\Models\Random Forest Classifier\Post Jan-19')
-pickle.dump(clf, open('rfc-92_47_100-trees-60-Features.sav', 'wb'))
-os.chdir(r'C:\Users\uchih\flood-detection-using-gait\Code\Models\Random Forest Classifier\Post Jan-19')
-"""
+'''
 
 '''
 #Writing to files for train,test,dev

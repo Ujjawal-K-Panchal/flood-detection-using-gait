@@ -1,4 +1,4 @@
-from SVM_0ftVS0_19ft import sorted_for_each_plane, X, Y, feature_names
+from SVM_Classifier_Script import sorted_for_each_plane, X, Y, feature_names
 import matplotlib.pyplot as plt
 import sys
 import random
@@ -38,6 +38,6 @@ for plane in sorted_for_each_plane.keys():
     plt.suptitle(title)
     plt.xlabel(top_features[0][0])
     plt.ylabel(top_features[1][0])
-    plt.savefig(path + ".png")
+    #plt.savefig(path + ".png")
     plt.show()
     
