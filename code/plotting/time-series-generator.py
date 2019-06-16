@@ -3,7 +3,6 @@
 Created on 6th MAY 2019
 @author: Hardik Ajmani & Ujjawal Panchal.
 """
-#importing libraries.
 import pandas as pd
 import numpy as np
 import os
@@ -20,7 +19,7 @@ dataset  = pd.read_csv(os.path.join('data', 'transformed', 'transformed_data.csv
 cols = dataset.columns
 
 Y = dataset.iloc[:,-1]
-#print(cols) 
+
 
 #Assigning labels for heights.
 CLR = list(range(len(Y)))
@@ -36,9 +35,12 @@ for i in range(len(Y)):
 
 Y = CLR
 
-x = dataset[['PRT_Z', 'ACCELEROMETER_X','ACCELEROMETER_Y', 'ACCELEROMETER_Z']].values
+x = dataset[['PRT_Z', 'ORIENTATION_X','ORIENTATION_Y']].values
 
 line_2_5 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'c'])
+
+print(np.shape(line_2_5))
+
 
 prtz_lessthan0 = []
 prtz_morethan0 = []
@@ -46,28 +48,29 @@ prtz_morethan0 = []
 
 for i in range(len(line_2_5)):
     if line_2_5[i,0] < 0:
-        prtz_lessthan0.append(x[i,1:])
+        prtz_lessthan0.append(x[i,:])
     else:
-        prtz_morethan0.append(x[i,1:])
+        prtz_morethan0.append(x[i,:])
 
 prtz_lessthan0 = np.asarray(prtz_lessthan0)
 prtz_morethan0 = np.asarray(prtz_morethan0)
+print(np.shape(prtz_lessthan0))
+print(np.shape(prtz_morethan0))
+ 
 
-print(np.shape(np.asarray(prtz_lessthan0)[1:3,:]))
-print(np.shape(prtz_morethan0))       
-
-cols = ['ACCELEROMETER_X','ACCELEROMETER_Y', 'ACCELEROMETER_Z']
-
-#sys.exit()  
-for i in range(3):
+cols = [ '', 'ORIENTATION_X','ORIENTATION_Y']
+ 
+for i in range(1,3):
     #Total Plot.
-    plt.scatter(range(1000 , 2000), prtz_lessthan0[1000:2000, i], color = 'red', label = 'Less than 0')
-    plt.scatter(range(1000, 2000), prtz_morethan0[1000:2000, i], color = 'blue', label = 'More than 0')
+    
+    plt.plot(range(len(line_2_5[:,i])), line_2_5[:, i], color = 'red', label = 'full')
+    plt.plot(range(len(prtz_lessthan0[:,i]), len(prtz_lessthan0[:,i]) + len(prtz_morethan0[:,i])), prtz_morethan0[:, i], color = 'blue', label = 'more_than 0')
+    plt.plot(range(len(prtz_lessthan0[:,i])), prtz_lessthan0[:, i], color = 'yellow', label = 'less_than 0')
     plt.ylabel(cols[i])
     plt.xlabel("row number")
     plt.legend(loc= 'upper right')
-    path = os.path.join("plots", "scatter", cols[i] + "_for_different_PRTZ_values" )
-    plt.savefig(path + ".png")
+    #path = os.path.join("plots", "time series", cols[i] + "_for_all" )
+    #plt.savefig(path + ".png")
     plt.show()
 
 sys.exit()  

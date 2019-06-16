@@ -36,9 +36,14 @@ for i in range(len(Y)):
 
 Y = CLR
 
-x = dataset[['PRT_Z', 'ORIENTATION_X','ORIENTATION_Y', 'ORIENTATION_Z']].values
+x = dataset[['PRT_Z', 'ORIENTATION_X','ORIENTATION_Y']].values
+
+
 
 line_2_5 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'c'])
+
+print(np.shape(line_2_5))
+
 
 prtz_lessthan0 = []
 prtz_morethan0 = []
@@ -52,7 +57,9 @@ for i in range(len(line_2_5)):
 
 print(np.shape(prtz_lessthan0))
 print(np.shape(prtz_morethan0))
-headers = ['ORIENTATION_X','ORIENTATION_Y', 'ORIENTATION_Z']
+
+
+headers = ['ORIENTATION_X','ORIENTATION_Y']
 
 headers = np.array(headers).reshape(1,len(headers))
 data = np.concatenate((headers, prtz_lessthan0), axis = 0)
