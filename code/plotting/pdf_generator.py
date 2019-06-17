@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import preprocessing
 
-dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data.csv'))
+dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data_new.csv'))
 
 cols = dataset.columns
 

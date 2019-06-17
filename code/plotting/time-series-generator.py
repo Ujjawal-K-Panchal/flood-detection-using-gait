@@ -48,30 +48,36 @@ prtz_morethan0 = []
 
 for i in range(len(line_2_5)):
     if line_2_5[i,0] < 0:
-        prtz_lessthan0.append(x[i,:])
+        prtz_lessthan0.append(line_2_5[i,:])
     else:
-        prtz_morethan0.append(x[i,:])
+        prtz_morethan0.append(line_2_5[i,:])
 
 prtz_lessthan0 = np.asarray(prtz_lessthan0)
 prtz_morethan0 = np.asarray(prtz_morethan0)
-print(np.shape(prtz_lessthan0))
+print(prtz_lessthan0)
+
+#sys.exit()
 print(np.shape(prtz_morethan0))
  
 
-cols = [ '', 'ORIENTATION_X','ORIENTATION_Y']
+cols = [ 'PRT_Z', 'ORIENTATION_X','ORIENTATION_Y']
  
-for i in range(1,3):
+for i in range(1):
     #Total Plot.
     
-    plt.plot(range(len(line_2_5[:,i])), line_2_5[:, i], color = 'red', label = 'full')
-    plt.plot(range(len(prtz_lessthan0[:,i]), len(prtz_lessthan0[:,i]) + len(prtz_morethan0[:,i])), prtz_morethan0[:, i], color = 'blue', label = 'more_than 0')
-    plt.plot(range(len(prtz_lessthan0[:,i])), prtz_lessthan0[:, i], color = 'yellow', label = 'less_than 0')
+    plt.plot(range(3480, 3510), line_2_5[3480:3510, i], color = 'red', label = 'full')
+    #plt.plot(range(len(prtz_lessthan0[:,i])), prtz_lessthan0[:, i], color = 'red', label = 'less_than 0')        
+    #plt.plot(range(len(prtz_lessthan0[:,i]), len(prtz_lessthan0[:,i]) + len(prtz_morethan0[:,i])), prtz_morethan0[:, i], color = 'blue', label = 'more_than 0')
+    #plt.plot(range(len(prtz_morethan0[:,i])), prtz_morethan0[:, i], color = 'blue', label = 'more_than 0')
+    
     plt.ylabel(cols[i])
     plt.xlabel("row number")
     plt.legend(loc= 'upper right')
     #path = os.path.join("plots", "time series", cols[i] + "_for_all" )
     #plt.savefig(path + ".png")
     plt.show()
+
+
 
 sys.exit()  
 #Plots for Volunteers.

@@ -14,7 +14,7 @@ from scipy.fftpack import rfft
 import csv
 import sys
 #%%
-df = pd.read_csv(os.path.join("data", "transformed", "transformed_data.csv"))
+df = pd.read_csv(os.path.join("data", "transformed", "transformed_new_cleaned.csv"))
 #print(list(df))
 
 #%%
@@ -179,7 +179,7 @@ print(data)
 
 #%%
 #writing it in a new file
-out_csv = open(os.path.join("data", "windowed", "window_50_stride_25_data.csv"), "w", newline="")
+out_csv = open(os.path.join("data", "windowed", "window_50_stride_25_data_new.csv"), "w", newline="")
 with out_csv:
     writer = csv.writer(out_csv)
     writer.writerows(data)
