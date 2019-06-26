@@ -14,7 +14,9 @@ from sklearn import preprocessing
 import sys
 import csv
 #os.chdir('..\..')
-dataset  = pd.read_csv(os.path.join('data', 'transformed', 'transformed_data.csv'))
+dataset  = pd.read_csv(os.path.join('data', 'windowed', 'windowed_new_data.csv'))
+#dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data_new.csv'))
+#dataset  = pd.read_csv(os.path.join('data', 'transformed', 'transformed_new_cleaned.csv'))
 
 cols = dataset.columns
 
@@ -35,12 +37,16 @@ for i in range(len(Y)):
 
 Y = CLR
 
-x = dataset[['PRT_Z', 'ORIENTATION_X','ORIENTATION_Y']].values
+x = dataset[['PRT_Z_median', 'PRT_Z_mean']].values
 
-line_2_5 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'c'])
+line_0 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'a'])
+line_0_19 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'b'])
+line_2_5 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'c' ])
+line_4_5 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'd'])
 
 print(np.shape(line_2_5))
 
+'''
 
 prtz_lessthan0 = []
 prtz_morethan0 = []
@@ -59,16 +65,19 @@ print(prtz_lessthan0)
 #sys.exit()
 print(np.shape(prtz_morethan0))
  
+'''
+cols = [ 'PRT_Z_median', 'PRT_Z_mean']
 
-cols = [ 'PRT_Z', 'ORIENTATION_X','ORIENTATION_Y']
+
+
  
-for i in range(1):
+for i in range(2):
     #Total Plot.
     
-    plt.plot(range(3480, 3510), line_2_5[3480:3510, i], color = 'red', label = 'full')
-    #plt.plot(range(len(prtz_lessthan0[:,i])), prtz_lessthan0[:, i], color = 'red', label = 'less_than 0')        
-    #plt.plot(range(len(prtz_lessthan0[:,i]), len(prtz_lessthan0[:,i]) + len(prtz_morethan0[:,i])), prtz_morethan0[:, i], color = 'blue', label = 'more_than 0')
-    #plt.plot(range(len(prtz_morethan0[:,i])), prtz_morethan0[:, i], color = 'blue', label = 'more_than 0')
+    plt.plot(range(20, 120), line_0[20:120, i], color = 'blue', label = '0')
+    plt.plot(range(20, 120), line_0_19[20:120, i], color = 'green', label = '0.19')        
+    plt.plot(range(20, 120), line_2_5[20:120, i], color = 'orange', label = '2.5')
+    plt.plot(range(20, 120), line_4_5[20:120, i], color = 'red', label = '4.5')
     
     plt.ylabel(cols[i])
     plt.xlabel("row number")
@@ -84,8 +93,8 @@ sys.exit()
 
 #Volunteer 1.
 plt.plot(range(len(line_2_5[0:50])), line_2_5[0:50], color = 'red', label = 'v1w1')
-#plt.plot(range(len(line_2_5[50:100])), line_2_5[50:100], color = 'green',label='v1w2')
-plt.plot(range(len(line_2_5[100:150])), line_2_5[100:150], color = 'blue', label='v1w3')
+#plt.plot(range(len(line_2_5[50:20])), line_2_5[50:20], color = 'green',label='v1w2')
+plt.plot(range(len(line_2_5[20:150])), line_2_5[20:150], color = 'blue', label='v1w3')
 plt.ylabel('PRT_Z')
 plt.xlabel("time")
 plt.legend(loc= 'upper right')
@@ -93,8 +102,8 @@ plt.show()
 
 
 #Volunteer 2.
-plt.plot(range(len(line_2_5[10000:10050])), line_2_5[10000:10050], color = 'red', label = 'v2w1')
-plt.plot(range(len(line_2_5[10100:10150])), line_2_5[10100:10150], color = 'blue', label='v2w3')
+plt.plot(range(len(line_2_5[1200:2050])), line_2_5[1200:2050], color = 'red', label = 'v2w1')
+plt.plot(range(len(line_2_5[1020:10150])), line_2_5[1020:10150], color = 'blue', label='v2w3')
 plt.ylabel('PRT_Z')
 plt.xlabel("time")
 plt.legend(loc= 'upper right')

@@ -56,6 +56,7 @@ def rolling_fft(data, window):
 #rolling fucntion for fft
 def rolling(data, window, stride, operation = 'sum'):
     size = data.shape
+    print("size :- " + str(size))
     #print(np.mean(data.iloc[20:30,3].values))
     result = np.full(size, np.nan)
     i = 0
@@ -81,7 +82,7 @@ def rolling(data, window, stride, operation = 'sum'):
             
             i += stride
     return result 
-#print(rolling(df.iloc[:, 1:5], 10, 1, 'mean')[50:60,0:3])
+print(rolling(df.iloc[:,-3:-2], 10, 1, 'median')[50:60,:])
 
 
 #%%
@@ -157,7 +158,7 @@ X,y = return_X_Y(df)
 
 #%%
 X = slice_by_classes(X,y)
-print(X)
+#print(X)
 
 #%%
 y = np.array(y).reshape(len(y),1)
@@ -175,7 +176,7 @@ X = X[~np.isnan(X).any(axis=1)]
 #%%
 data = np.concatenate((headers, X), axis = 0)
 print(data)
-
+sys.exit()
 
 #%%
 #writing it in a new file
