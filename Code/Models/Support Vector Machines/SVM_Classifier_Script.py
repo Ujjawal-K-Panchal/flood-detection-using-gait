@@ -10,15 +10,14 @@ import numpy as np
 import pickle
 import os
 import sys
-import np_utils 
 
 
 #Importing dataset.
 
-#os.chdir(r'..\..\..\data\windowed')
-#dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
-#os.chdir(r'..\..\Code\Models\Support Vector Machines')
-dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data.csv'))
+os.chdir(r'..\..\..\data\windowed')
+dataset  = pd.read_csv('windowed_new_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+os.chdir(r'..\..\Code\Models\Support Vector Machines')
+#dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data.csv'))
 
 
 #Removing some unwanted features.
@@ -254,3 +253,22 @@ for plane in range(len(coeffs[:,0])):
     sorted_for_each_plane[plane] = sorted_per_plane
 
 print(type(sorted_for_each_plane[0]))
+
+#Top 10 important features.
+for i in range(0,len(sorted_for_each_plane)):
+    if(i == 0):
+        print("0ft vs 0.19 ft")
+    elif(i == 1):
+        print("0ft vs 2.5 ft")
+    elif(i==2):
+        print("0ft vs 4.5 ft")
+    elif(i==3):
+        print("0.19ft vs 2.5 ft")
+    elif(i ==4):
+        print("0.19ft vs 4.5 ft")
+    elif(i==5):
+        print("2.5ft vs 4.5 ft")
+    for j in range(0,10):
+                print("\t",j ,":", sorted_for_each_plane[i][j][0], sorted_for_each_plane[i][j][1])
+    
+

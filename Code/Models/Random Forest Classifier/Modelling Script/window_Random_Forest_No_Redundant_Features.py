@@ -16,7 +16,7 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 
 os.chdir(r'..\..\..\..\data\windowed')
-dataset  = pd.read_csv('window_50_stride_25_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
+dataset  = pd.read_csv('windowed_new_data.csv')# Caution uses merged window. If you wish to use the same configuration, please set random_state to 1
 os.chdir(r'..\..\Code\Models\Random Forest Classifier\Modelling Script')
 
 #Removing some unwanted features.
@@ -116,10 +116,15 @@ clf = RandomForestClassifier(n_estimators= 500, min_samples_split= 2,
                              criterion= 'entropy', bootstrap= False, random_state = 0)
 '''
 
+clf = RandomForestClassifier(n_estimators=500, min_samples_split= 2, min_samples_leaf=1, max_features='log2', max_depth= 11, criterion='entropy', bootstrap=False) 
+
+'''
 #Pre loaded Model.
 os.chdir('../Post Jan-19')
 clf = pickle.load(open('rfc-96-68_500-trees-60-Features-NO-PCA(1).sav', 'rb'))
 os.chdir('../Modelling Script')
+'''
+
 #10 Cross validation
 
 from sklearn.model_selection import KFold, cross_val_score, LeaveOneOut
@@ -145,10 +150,6 @@ print(y_pred)
 print(confusion_matrix(Y_test, y_pred))
 print(precision_recall_fscore_support(Y_test, y_pred))
 print(pd.crosstab(y_true, y_pr, rownames=['True'], colnames=['Predicted'], margins=True))
-sys.exit(0)
-
-
-##remove sys.exit
 
 
 #Other evaluation metrics.
