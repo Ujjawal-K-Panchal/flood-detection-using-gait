@@ -36,7 +36,7 @@ colors = ['#E69F00', '#56B4E9', '#F0E442', '#009E73']
 lower, upper = -10, 10
 
 for i in range(len(cols)):
-    if re.match(r'PRT_Z_mean',cols[i]) or re.match(r'GYROSCOPE_Y_mean',cols[i]) or re.match(r'PRT_Z_median',cols[i]):
+    if re.match(r'GRAVITY_X_fft',cols[i]):# or re.match(r'GYROSCOPE_Y_mean',cols[i]) or re.match(r'PRT_Z_median',cols[i]):
         x = dataset.iloc[:, i]
         #x = preprocessing.normalize(np.array(x).reshape(-1, 1))
         #x = [lower + (upper - lower) * v for v in x]
@@ -56,8 +56,8 @@ for i in range(len(cols)):
         #plt.plot(line_2_5, norm.pdf(line_2_5))
         #plt.plot(line_4_5, norm.pdf(line_4_5))
         #plt.hist([line_0,line_0_19,line_2_5,line_4_5], color=colors, normed=True)
-        sns.distplot(line_0, hist = False, kde = True, kde_kws = {'linewidth': 2}, label = "0 feet", color = 'blue')
-        sns.distplot(line_0_19, hist = False, kde = True, kde_kws = {'linewidth': 2}, label = "0.19 feet", color = 'orange')
+        #sns.distplot(line_0, hist = False, kde = True, kde_kws = {'linewidth': 2}, label = "0 feet", color = 'blue')
+        #sns.distplot(line_0_19, hist = False, kde = True, kde_kws = {'linewidth': 2}, label = "0.19 feet", color = 'orange')
         sns.distplot(line_2_5, hist = False, kde = True, kde_kws = {'linewidth': 2}, label = "2.5 feet", color = 'green')
         sns.distplot(line_4_5  , hist = False, kde = True, kde_kws = {'linewidth': 2}, label = "4.5 feet", color = 'red')
         plt.legend()
