@@ -24,7 +24,7 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 #%%
 #reading the dataset
-df = pd.read_csv(os.path.join("data", "windowed", "window_50_stride_25_data.csv"))
+df = pd.read_csv(os.path.join("data", "windowed", "windowed_new_data.csv"))
 df = df.dropna(axis=1)
 #print(df.columns.values)
 
