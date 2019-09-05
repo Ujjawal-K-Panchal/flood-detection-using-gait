@@ -13,6 +13,7 @@ import seaborn as sns
 from sklearn import preprocessing
 import sys
 import csv
+
 #os.chdir('..\..')
 dataset  = pd.read_csv(os.path.join('data', 'windowed', 'windowed_new_data.csv'))
 #dataset  = pd.read_csv(os.path.join('data', 'windowed', 'window_50_stride_25_data_new.csv'))
@@ -37,7 +38,7 @@ for i in range(len(Y)):
 
 Y = CLR
 
-x = dataset[['PRT_Z_median', 'PRT_Z_mean']].values
+x = dataset[['GRAVITY_X_fft', 'PRT_Z_median']].values
 
 line_0 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'a'])
 line_0_19 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'b'])
@@ -45,6 +46,7 @@ line_2_5 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'c' ])
 line_4_5 = np.asarray([x[j, :] for j in range(0,len(x)) if Y[j] == 'd'])
 
 print(np.shape(line_2_5))
+
 
 '''
 
@@ -66,19 +68,15 @@ print(prtz_lessthan0)
 print(np.shape(prtz_morethan0))
  
 '''
-cols = [ 'PRT_Z_median', 'PRT_Z_mean']
+cols = ['GRAVITY_X', 'PRT_Z']
 
-
-
- 
-for i in range(2):
+for i in range(1):
     #Total Plot.
-    
-    plt.plot(range(20, 120), line_0[20:120, i], color = 'blue', label = '0')
-    plt.plot(range(20, 120), line_0_19[20:120, i], color = 'green', label = '0.19')        
-    plt.plot(range(20, 120), line_2_5[20:120, i], color = 'orange', label = '2.5')
-    plt.plot(range(20, 120), line_4_5[20:120, i], color = 'red', label = '4.5')
-    
+    #plt.plot(range(200,700), line_0[200:700, i], color = 'blue', label = '0')
+    #plt.plot(range(200,700), line_0_19[200:700, i], color = 'green', label = '0.19')        
+    plt.plot(range(100), line_2_5[:100, i], color = 'orange', label = '2.5')
+    plt.plot(range(100), line_4_5[:100, i], color = 'red', label = '4.5')
+
     plt.ylabel(cols[i])
     plt.xlabel("row number")
     plt.legend(loc= 'upper right')
