@@ -35,7 +35,7 @@ for i in range(len(Y)):
 Y = CLR
 
 '''
-train_test_dev
+#train_test_dev
 from sklearn.cross_validation import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=1)#Don't change random state for keeping standardized.
 

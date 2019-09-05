@@ -87,7 +87,7 @@ for i in range(len(feature_names)):
 #df.to_csv('PCA_feature_variances_46-components.csv')
 #train_test splitting for analysis of optimal number of parameters.
 from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.2, random_state = 0)
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.6, random_state = 0)
 X_cv, X_test, Y_cv, Y_test =train_test_split(X_test, Y_test, test_size = 0.5, random_state = 0)
 
 #Modelling
@@ -154,11 +154,11 @@ pickle.dump(model, open('SVM-Model-No-PCA.sav' , 'wb'))
 model = pickle.load(open('SVM-Model-No-PCA(1).sav' , 'rb'))
 '''
 
-model = SVC(C = 3, gamma = 0.01, kernel = 'linear')
+model = SVC(C = 1, gamma = 0.01, kernel = 'linear')
 model.fit(X_train, Y_train)
 
 y_pred = model.predict(X_test)
-num_classes = 4
+#num_classes = 4
 
 # from lable to categorial
 #y_prediction =  y_pred.argmax(1) 
@@ -201,11 +201,12 @@ print(pd.crosstab(np.array(Y_test),np.array(model.predict(X_test)) ,  margins = 
 
 #Precision & Recall
 from sklearn.metrics import precision_recall_curve
-from sklearn.metrics import recall_score, precision_score, f1_score
+from sklearn.metrics import recall_score, precision_score, f1_score, accuracy_score
 
-#print('Precision of the model : ', precision_score(Y_test, model.predict(X_test), average = 'micro'))
-#print('Recall of the model : ',recall_score(Y_test, model.predict(X_test), average = 'micro') )
-#print('F1 Score of the model : ', f1_score(Y_test, clf.predict(X_test), average = 'micro'))
+print('Accuracy of the model : ', accuracy_score(Y_test, clf.predict(X_test)))
+print('Precision of the model : ', precision_score(Y_test, model.predict(X_test), average = 'micro'))
+print('Recall of the model : ',recall_score(Y_test, model.predict(X_test), average = 'micro') )
+print('F1 Score of the model : ', f1_score(Y_test, model.predict(X_test), average = 'micro'))
 
 
 #finding feature weights and sorting by mean and median.

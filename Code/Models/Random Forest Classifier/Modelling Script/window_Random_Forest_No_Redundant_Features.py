@@ -3,7 +3,7 @@
 Creation data :  Thu Sep 13 12:10:39 2018
 Latest Update : Mo Feb 26 11:39:40 2019
 @author: Ujjawal.K.Panchal
-Note! Please use Merged_Window.csv with me.
+Note <!> Please use windowed_new_data.csv with me.
 """
 
 import pandas as pd
@@ -51,14 +51,14 @@ X = pca.fit_transform(X)
 
 #train_test_dev
 from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=1)#Don't change random state for keeping standardized.
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.6, random_state=1)#Don't change random state for keeping standardized.
 
-X_train, X_dev, Y_train, Y_dev = train_test_split(X_train, Y_train, test_size=0.2, random_state=1)
+X_test, X_dev, Y_test, Y_dev = train_test_split(X_test, Y_test, test_size=0.5, random_state=1)
 """
 #Hyperparameter tuning for Random Forest
 
 # Number of trees in random forest
-n_estimators = [int(x) for x in np.linspace(start = 100, stop = 100, num = 10)]
+n_estimators = [int(x) for x in np.linspace(start = 1, stop = 30, num = 30)]
 
 # Number of features to consider at every split
 max_features = ['auto', 'sqrt', 'log2']
@@ -66,10 +66,10 @@ max_features = ['auto', 'sqrt', 'log2']
 # Maximum number of levels in tree
 max_depth = [int(x) for x in np.linspace(10, 15)]
 max_depth.append(None)
-
+max_depth = [10]
 # Minimum number of samples required to split a node
 min_samples_split = [2, 5, 10]
-
+min_samples_split = [8]
 # Minimum number of samples required at each leaf node
 min_samples_leaf = [1, 2, 4]
 
@@ -86,17 +86,16 @@ random_grid = {'n_estimators': n_estimators,
                'bootstrap': bootstrap,
                'criterion': criterions
                }
-
+"""
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RandomizedSearchCV
-
+"""
 clf_random = RandomizedSearchCV(estimator = RandomForestClassifier(n_jobs  = -1), 
                                 param_distributions = random_grid, 
                                 n_iter = 100, cv = 3, verbose=10, random_state=42, n_jobs = 1) 
 clf_random.fit(X_dev,Y_dev)
 print(clf_random.best_params_)
 
-clf2 = RandomForestClassifier(n_estimators = 100, criterion = 'gini', min_samples_split = 2, min_samples_leaf = 1, max_features = 'log2', max_depth = 15, bootstrap = True)
 """
 #model
 #os.chdir(r'C:\Users\uchih\Documents\RESEARCH\GITLAB\flood-detection-using-gait\Code\Models\Random Forest Classifier\Post Jan-19')
@@ -116,7 +115,7 @@ clf = RandomForestClassifier(n_estimators= 500, min_samples_split= 2,
                              criterion= 'entropy', bootstrap= False, random_state = 0)
 '''
 
-clf = RandomForestClassifier(n_estimators=500, min_samples_split= 2, min_samples_leaf=1, max_features='log2', max_depth= 11, criterion='entropy', bootstrap=False) 
+clf = RandomForestClassifier(n_estimators=29, min_samples_split = 8, min_samples_leaf = 1, max_features = 'sqrt', max_depth = 10, criterion = 'gini', bootstrap = 'True')#, min_samples_split= 2, min_samples_leaf=4, max_features='auto', max_depth= 10, criterion='entropy', bootstrap=False) 
 
 '''
 #Pre loaded Model.
@@ -159,8 +158,9 @@ print(pd.crosstab(np.array(Y_test),np.array(clf.predict(X_test)) ,  margins = Tr
 
 #Precision & Recall
 from sklearn.metrics import precision_recall_curve
-from sklearn.metrics import recall_score, precision_score, f1_score
+from sklearn.metrics import recall_score, precision_score, f1_score, accuracy_score
 
+print('Accuracy of the model : ', accuracy_score(Y_test, clf.predict(X_test)))
 print('Precision of the model : ', precision_score(Y_test, clf.predict(X_test), average = 'micro'))
 print('Recall of the model : ',recall_score(Y_test, clf.predict(X_test), average = 'micro') )
 print('F1 Score of the model : ', f1_score(Y_test, clf.predict(X_test), average = 'micro'))
