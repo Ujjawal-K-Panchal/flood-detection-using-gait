@@ -24,7 +24,7 @@ os.chdir(r'..\..\Code\Models\Support Vector Machines')
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('ORIENTATION')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('ACCELEROMETER')], axis = 1)
-
+dataset = dataset.drop([col for col in dataset.columns if  not col.find('PRT')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('std_dev')==-1], axis = 1)#input *std_dev for removing substring with std_dev
 
 X = dataset.iloc[:,:-1]
@@ -87,8 +87,8 @@ for i in range(len(feature_names)):
 #df.to_csv('PCA_feature_variances_46-components.csv')
 #train_test splitting for analysis of optimal number of parameters.
 from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.6, random_state = 0)
-X_cv, X_test, Y_cv, Y_test =train_test_split(X_test, Y_test, test_size = 0.5, random_state = 0)
+X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.8, random_state = 0)
+#X_cv, X_test, Y_cv, Y_test =train_test_split(X_test, Y_test, test_size = 0.5, random_state = 0)
 
 #Modelling
 
@@ -182,7 +182,7 @@ Y_test_pred = model.predict(X_test)
 print('Test set accuracy = ',accuracy_score(Y_test,Y_test_pred))
 print('\n')
 '''
-#10 Cross validation
+#5 Cross validation
 
 from sklearn.model_selection import KFold, cross_val_score, LeaveOneOut
 from sklearn.ensemble import RandomForestClassifier

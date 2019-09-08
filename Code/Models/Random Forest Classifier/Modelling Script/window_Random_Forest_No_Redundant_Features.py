@@ -23,7 +23,7 @@ os.chdir(r'..\..\Code\Models\Random Forest Classifier\Modelling Script')
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('MAGNETIC')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('ORIENTATION')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('ACCELEROMETER')], axis = 1)
-
+dataset = dataset.drop([col for col in dataset.columns if  not col.find('PRT')], axis = 1)
 dataset = dataset.drop([col for col in dataset.columns if  not col.find('std_dev')==-1], axis = 1)#input *std_dev for removing substring with std_dev
 X = dataset.iloc[:,:-1]
 Y = dataset.iloc[:,-1]
