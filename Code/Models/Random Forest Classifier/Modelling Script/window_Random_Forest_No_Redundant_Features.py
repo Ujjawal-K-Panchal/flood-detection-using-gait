@@ -51,9 +51,9 @@ X = pca.fit_transform(X)
 
 #train_test_dev
 from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.6, random_state=1)#Don't change random state for keeping standardized.
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.8, random_state=1)#Don't change random state for keeping standardized.
 
-X_test, X_dev, Y_test, Y_dev = train_test_split(X_test, Y_test, test_size=0.5, random_state=1)
+#X_test, X_dev, Y_test, Y_dev = train_test_split(X_test, Y_test, test_size=0.5, random_state=1)
 """
 #Hyperparameter tuning for Random Forest
 
@@ -115,8 +115,7 @@ clf = RandomForestClassifier(n_estimators= 500, min_samples_split= 2,
                              criterion= 'entropy', bootstrap= False, random_state = 0)
 '''
 
-clf = RandomForestClassifier(n_estimators=29, min_samples_split = 8, min_samples_leaf = 1, max_features = 'sqrt', max_depth = 10, criterion = 'gini', bootstrap = 'True')#, min_samples_split= 2, min_samples_leaf=4, max_features='auto', max_depth= 10, criterion='entropy', bootstrap=False) 
-
+clf = RandomForestClassifier(n_estimators=30, min_samples_split = 8, max_depth = 10)
 '''
 #Pre loaded Model.
 os.chdir('../Post Jan-19')
@@ -124,19 +123,36 @@ clf = pickle.load(open('rfc-96-68_500-trees-60-Features-NO-PCA(1).sav', 'rb'))
 os.chdir('../Modelling Script')
 '''
 
-#10 Cross validation
+
+    
+
+#5 Cross validation
 
 from sklearn.model_selection import KFold, cross_val_score, LeaveOneOut
 from sklearn.ensemble import RandomForestClassifier
-k_fold = KFold(n_splits=10, shuffle=True, random_state=0)
+k_fold = KFold(n_splits=5, shuffle=True, random_state=0)
 
-l1 = cross_val_score(clf, X, Y, cv=k_fold, n_jobs=1)
-
-
-print('List of Accuracies of 10-Cross-Validation :\n'+str(l1))
-print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
+l1_acc = cross_val_score(clf, X, Y, cv=k_fold, n_jobs=1, scoring = 'accuracy')
+l1_prec = cross_val_score(clf, X, Y, cv = k_fold, n_jobs =1, scoring = 'precision_macro')
+l1_rec = cross_val_score(clf, X, Y, cv = k_fold, n_jobs = 1, scoring = 'recall_macro')
+print('Random Forest classifier : ')
+print('List of Accuracies of 5-Cross-Validation :'+str(l1_acc))
+print('List of Precision of 5-Cross-Validation :'+str(l1_prec))
+print('List of Recall of 5-Cross-Validation :'+str(l1_rec))
 
 clf.fit(X_train, Y_train)
+# -- Precision Recall for each class seperately on each fold.
+i = 1
+X, Y = pd.DataFrame(X), pd.DataFrame(Y)
+for train_index, test_index in k_fold.split(X):
+    X_train, X_test = X.iloc[train_index], X.iloc[test_index]
+    Y_train, Y_test = Y.iloc[train_index], Y.iloc[test_index]
+    clf.fit(X_train, Y_train)
+    Y_pred = clf.predict(X_test)
+    print('For Fold '+str(i)+' Classwise Metrics : ([Precision], [Recall], [F1 score], [Support]):'+str(precision_recall_fscore_support(Y_test, Y_pred)))
+    i+=1
+
+
 
 ##edit 29/4/19 class wise precision, recall and F1 score
 y_pred = clf.predict(X_test)

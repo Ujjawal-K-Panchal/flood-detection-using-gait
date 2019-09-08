@@ -184,15 +184,17 @@ print('\n')
 '''
 #10 Cross validation
 
-from sklearn.model_selection import KFold, cross_val_score
-k_fold = KFold(n_splits=10, shuffle=True, random_state=0)
-#previously tuned h params values : n_estimators = 36, criterion = 'entropy',
+from sklearn.model_selection import KFold, cross_val_score, LeaveOneOut
+from sklearn.ensemble import RandomForestClassifier
+k_fold = KFold(n_splits=5, shuffle=True, random_state=0)
 
-l1 = cross_val_score(model, X, Y, cv=k_fold, n_jobs=1)
-
-
-print('List of Accuracies of 10-Cross-Validation :\n'+str(l1))
-print('10-Cross-Validation-Accuracy mean : %.4f' %(np.sum(l1)/len(l1)) )
+l1_acc = cross_val_score(model, X, Y, cv=k_fold, n_jobs=1, scoring = 'accuracy')
+l1_prec = cross_val_score(model, X, Y, cv = k_fold, n_jobs =1, scoring = 'precision_macro')
+l1_rec = cross_val_score(model, X, Y, cv = k_fold, n_jobs = 1, scoring = 'recall_macro')
+print('SVM classifier : ')
+print('List of Accuracies of 5-Cross-Validation :'+str(l1_acc))
+print('List of Precision of 5-Cross-Validation :'+str(l1_prec))
+print('List of Recall of 5-Cross-Validation :'+str(l1_rec))
 
 #Other evaluation metrics.
 
@@ -203,10 +205,23 @@ print(pd.crosstab(np.array(Y_test),np.array(model.predict(X_test)) ,  margins = 
 from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import recall_score, precision_score, f1_score, accuracy_score
 
-print('Accuracy of the model : ', accuracy_score(Y_test, clf.predict(X_test)))
+print('Accuracy of the model : ', accuracy_score(Y_test, model.predict(X_test)))
 print('Precision of the model : ', precision_score(Y_test, model.predict(X_test), average = 'micro'))
 print('Recall of the model : ',recall_score(Y_test, model.predict(X_test), average = 'micro') )
 print('F1 Score of the model : ', f1_score(Y_test, model.predict(X_test), average = 'micro'))
+
+# -- Precision Recall for each class seperately on each fold.
+i = 1
+X, Y = pd.DataFrame(X), pd.DataFrame(Y)
+for train_index, test_index in k_fold.split(X):
+    X_train, X_test = X.iloc[train_index], X.iloc[test_index]
+    Y_train, Y_test = Y.iloc[train_index], Y.iloc[test_index]
+    model.fit(X_train, Y_train)
+    Y_pred = model.predict(X_test)
+    print('For Fold '+str(i)+' Classwise Metrics : ([Precision], [Recall], [F1 score], [Support]):'+str(precision_recall_fscore_support(Y_test, Y_pred)))
+    i+=1
+
+
 
 
 #finding feature weights and sorting by mean and median.
