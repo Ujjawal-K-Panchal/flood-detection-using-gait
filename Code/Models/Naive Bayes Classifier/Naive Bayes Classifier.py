@@ -149,17 +149,8 @@ avg_2_5_f1/=5
 avg_4_5_f1/=5
 
 
+#others:
 print("NBC Classifier            :       0, 0.19, 2.5, 4.5")
 print("average precision for the 4 classes : ", avg_0_prec, avg_0_19_prec, avg_2_5_prec, avg_4_5_prec)
 print("average recall for the 4 classes : ", avg_0_recall, avg_0_19_recall, avg_2_5_recall, avg_4_5_recall)
 print("average f1 for the 4 classes : ", avg_0_f1, avg_0_19_f1, avg_2_5_f1, avg_4_5_f1)
-
-#others:
-
-
-
-
-
-
-
-
