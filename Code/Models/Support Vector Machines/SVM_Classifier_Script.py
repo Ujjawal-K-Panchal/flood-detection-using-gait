@@ -185,7 +185,6 @@ print('\n')
 #5 Cross validation
 
 from sklearn.model_selection import KFold, cross_val_score, LeaveOneOut
-from sklearn.ensemble import RandomForestClassifier
 k_fold = KFold(n_splits=5, shuffle=True, random_state=0)
 
 l1_acc = cross_val_score(model, X, Y, cv=k_fold, n_jobs=1, scoring = 'accuracy')
