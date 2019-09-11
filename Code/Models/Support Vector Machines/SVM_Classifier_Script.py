@@ -193,8 +193,10 @@ l1_prec = cross_val_score(model, X, Y, cv = k_fold, n_jobs =1, scoring = 'precis
 l1_rec = cross_val_score(model, X, Y, cv = k_fold, n_jobs = 1, scoring = 'recall_macro')
 print('SVM classifier : ')
 print('List of Accuracies of 5-Cross-Validation :'+str(l1_acc))
-print('List of Precision of 5-Cross-Validation :'+str(l1_prec))
-print('List of Recall of 5-Cross-Validation :'+str(l1_rec))
+print('Average of Accuracies of 5-Cross-Validation :'+str(np.average(np.array(l1_acc))))
+
+#print('List of Precision of 5-Cross-Validation :'+str(l1_prec))
+#print('List of Recall of 5-Cross-Validation :'+str(l1_rec))
 
 #Other evaluation metrics.
 
@@ -220,6 +222,69 @@ for train_index, test_index in k_fold.split(X):
     Y_pred = model.predict(X_test)
     print('For Fold '+str(i)+' Classwise Metrics : ([Precision], [Recall], [F1 score], [Support]):'+str(precision_recall_fscore_support(Y_test, Y_pred)))
     i+=1
+
+
+# -- Precision Recall for each class seperately on each fold.
+n = 5
+i = 1
+X, Y = pd.DataFrame(X), pd.DataFrame(Y)
+avg_0_prec=0
+avg_0_19_prec=0
+avg_2_5_prec=0
+avg_4_5_prec=0
+
+avg_0_recall=0
+avg_0_19_recall=0
+avg_2_5_recall=0
+avg_4_5_recall=0
+
+avg_0_f1=0
+avg_0_19_f1=0
+avg_2_5_f1=0
+avg_4_5_f1=0
+
+for train_index, test_index in k_fold.split(X):
+    X_train, X_test = X.iloc[train_index], X.iloc[test_index]
+    Y_train, Y_test = Y.iloc[train_index], Y.iloc[test_index]
+    model.fit(X_train, Y_train)
+    Y_pred = model.predict(X_test)
+    print('For Fold '+str(i)+' Classwise Metrics : ([Precision], [Recall], [F1 score], [Support]):'+str(precision_recall_fscore_support(Y_test, Y_pred)))
+    l1 = precision_recall_fscore_support(Y_test, Y_pred)
+    avg_0_prec += l1[0][0]
+    avg_0_19_prec += l1[0][1]
+    avg_2_5_prec += l1[0][2]
+    avg_4_5_prec += l1[0][3]
+    avg_0_recall += l1[1][0]
+    avg_0_19_recall += l1[1][1]
+    avg_2_5_recall += l1[1][2]
+    avg_4_5_recall += l1[1][3]
+    avg_0_f1 += l1[2][0]
+    avg_0_19_f1 += l1[2][1]
+    avg_2_5_f1 += l1[2][2]
+    avg_4_5_f1 += l1[2][3]
+    
+    
+    i+=1
+
+avg_0_prec/=5
+avg_0_19_prec/=5
+avg_2_5_prec/=5
+avg_4_5_prec/=5
+avg_0_recall/=5
+avg_0_19_recall/=5
+avg_2_5_recall/=5
+avg_4_5_recall/=5
+
+avg_0_f1/=5
+avg_0_19_f1/=5
+avg_2_5_f1/=5
+avg_4_5_f1/=5
+
+
+print("SVM Classifier            :       0, 0.19, 2.5, 4.5")
+print("average precision for the 4 classes : ", avg_0_prec, avg_0_19_prec, avg_2_5_prec, avg_4_5_prec)
+print("average recall for the 4 classes : ", avg_0_recall, avg_0_19_recall, avg_2_5_recall, avg_4_5_recall)
+print("average f1 for the 4 classes : ", avg_0_f1, avg_0_19_f1, avg_2_5_f1, avg_4_5_f1)
 
 
 
