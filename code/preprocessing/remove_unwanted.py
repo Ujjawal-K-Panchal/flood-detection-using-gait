@@ -9,7 +9,7 @@ from sklearn import preprocessing
 import sys
 import csv
 #os.chdir('..\..')
-dataset  = pd.read_csv(os.path.join('data', 'transformed', 'transformed_data.csv'))
+dataset  = pd.read_csv(os.path.join('data', 'raw', 'raw_data_reduced.csv'))
 
 cols = dataset.columns
 
@@ -48,7 +48,7 @@ data = np.concatenate((line_0, line_0_19, line_2_5, line_4_5), axis = 0)
 data = np.concatenate((cols, data), axis = 0)
 
 
-out_csv = open(os.path.join("data", "transformed", "transformed_new_cleaned.csv"), "w", newline="")
+out_csv = open(os.path.join("data", "raw", "raw_data1.csv"), "w", newline="")
 with out_csv:
     writer = csv.writer(out_csv)
     writer.writerows(data)
