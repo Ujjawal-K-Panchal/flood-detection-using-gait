@@ -29,7 +29,6 @@ agrees with our intuition of gait characteristics in different depths.
     
     4. Windowed data generation is done at code/window analysis/windowed_data_generation.py
 
-
     5. Windowed data is available at data/windowed/window_50_stride_25.csv
     
     6.  Models are available in code/models
