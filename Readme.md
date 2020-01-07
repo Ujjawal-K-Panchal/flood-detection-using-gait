@@ -1,8 +1,8 @@
 ---------------------------------------------
-**FLOOD DETECTION using GAIT ANALYSIS**
+#FLOOD DETECTION using GAIT ANALYSIS
 
-*[+] Guide - Saad Yunus Sait.*
-*[+] Researchers - Ujjawal K Panchal & Hardik Ajmani.*
+#[+] Guide - Saad Yunus Sait.
+#[+] Researchers - Ujjawal K Panchal & Hardik Ajmani.
 -----------------------------------------------
 
 [+] Abstract :-
@@ -18,7 +18,7 @@ and have been used to train machine learning models in a supervised manner. Supp
 random forests and naïve bayes models have been attempted, of which, support vector machines perform
 best with a classification accuracy of 99.45%. Further analysis of the most relevant features for classification
 agrees with our intuition of gait characteristics in different depths.
-
+-----------------------------------------------
 [+] Repo Information:-
 
     1. RAW data from mobile sensors is available at data/raw/raw_data_reduced.csv  
@@ -37,3 +37,4 @@ agrees with our intuition of gait characteristics in different depths.
     5.  Old contains the old folders and unused files.
 
     6.  Saad contains Saad sir's scripts.
+-----------------------------------------------
