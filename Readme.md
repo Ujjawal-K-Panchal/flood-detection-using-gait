@@ -1,5 +1,5 @@
 ---------------------------------------------
-FLOOD DETECTION using GAIT ANALYSIS
+Flooding Level Classification by Gait Analysis of Smartphone Sensor Data
 
 [+] Guide - Saad Yunus Sait.
 [+] Researchers - Ujjawal K Panchal & Hardik Ajmani.
