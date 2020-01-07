@@ -1,8 +1,8 @@
 ---------------------------------------------
-#FLOOD DETECTION using GAIT ANALYSIS
+FLOOD DETECTION using GAIT ANALYSIS
 
-#[+] Guide - Saad Yunus Sait.
-#[+] Researchers - Ujjawal K Panchal & Hardik Ajmani.
+[+] Guide - Saad Yunus Sait.
+[+] Researchers - Ujjawal K Panchal & Hardik Ajmani.
 -----------------------------------------------
 
 [+] Abstract :-
