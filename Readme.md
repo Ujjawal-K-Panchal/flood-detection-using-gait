@@ -18,6 +18,23 @@ and have been used to train machine learning models in a supervised manner. Supp
 random forests and naïve bayes models have been attempted, of which, support vector machines perform
 best with a classification accuracy of 99.45%. Further analysis of the most relevant features for classification
 agrees with our intuition of gait characteristics in different depths.
+
+--------------------------------------------------------------------------------------
+Details Regarding Dataset:
+
+Readings were taken by different volunteers. Each volunteer was asked to walk in a straight line with mobile phone vertical, display facing volunteer in different depths of water (without making a U-turn). When he/she reached the end he/she would stop recording after coming to a stop. This is considered as a single 'reading'. Readings were sampled at 10 Hz. The dataset places readings belonging to a particular depth together in the csv file, without making a distinction regarding where each reading starts and ends. Readings belonging to same volunteer for same depth were placed continuously. In our research work, features were computed over a window of 50 continuous readings. Adjacent windows have 50% overlap. Windows of data were considered without considering the boundary between readings (except in case of different depths). 
+
+Model of smart phones used:
+
+Samsung Galaxy S8+ and Lenovo Zuk Z2 plus were used to record the data, both of which are
+based on Android operating system.
+
+Please cite our paper if you use our data:
+
+Panchal, Ujjawal K., Hardik Ajmani, and Saad Y. Sait. "Flooding level classification by gait analysis of smartphone sensor data." Ieee Access 7 (2019): 181678-181687.
+
+Any further questions may be addressed to the authors of this paper.
+
 -----------------------------------------------
 [+] Repo Information:-
 
